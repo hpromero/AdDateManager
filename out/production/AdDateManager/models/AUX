@@ -1,0 +1,80 @@
+
+// --------------------- Dates methods -------------------------------
+
+
+
+    public static OID saveDateByOID(OID oid, Date date){
+        OID newOid=null;
+        try {
+            openConection();
+            if (oid==null){
+                newOid = odb.store(date);
+            }else{
+                Object object = odb.getObjectFromId(oid);
+                Date dateToUpdate = (Date)object;
+                dateToUpdate.copyDate(date);
+                newOid = odb.store(dateToUpdate);
+            }
+            infoBox("","Mensaje", "Cita guardada correctamente",INFORMATION);
+        } catch(Exception e) {
+            infoBox(e.toString(),"Error","Cita no guardada",ERROR);
+        }finally{ closeConection(); }
+
+        return newOid;
+    }
+
+    public static ArrayList<ObjectForList> getDateList() {
+
+        ArrayList<ObjectForList> dateList = new ArrayList<>();
+        try {
+            openConection();
+            Objects<Date> datesodb = odb.getObjects(Date.class);
+            while(datesodb.hasNext()){
+                Date date = datesodb.next();
+                ObjectForList dateObj = Date.DateToObjectForList(date,odb.getObjectId(date));
+                dateList.add(dateObj);
+            }
+
+        } catch(Exception e) {
+            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
+        }finally{
+            closeConection();
+        }
+        return dateList;
+    }
+
+    public static boolean checkDateDni(String id) {
+        try{
+            openConection();
+            ICriterion criterio = Where.equal("dni", id);
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> dateodb = odb.getObjects(query);
+            if (dateodb.size()==0){
+                return true;
+            }
+        }catch(Exception e){
+            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
+        }finally{
+            closeConection();
+        }
+        return false;
+
+    }
+
+//------------------------Section Controller--------------------
+
+
+    public void openDateDetail(OID oid){
+        vbContent.getChildren().clear();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DetailDate.fxml"));
+            Node node = loader.load();
+            DetailDateController controller = loader.getController();
+            controller.open(oid);
+            controller.setParentController(this);
+            vbContent.getChildren().add(node);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
