@@ -24,6 +24,7 @@ import static java.time.temporal.ChronoUnit.*;
 public class DailyViewController {
     @FXML private VBox vbHours;
     @FXML private VBox vbDates;
+    @FXML private Label lbTitle;
 
 
     private ArrayList<Date> dates;
@@ -31,17 +32,13 @@ public class DailyViewController {
 
 
     public void setData(QuickWeek week,int day) {
-        //TODO: traer solo array dates y nombre del departamento y borrar metodo de seleción
-            selectDates(week,day);
-        //------------
-
-
+        selectDates(week,day);
         listDates();
-  //      setHours();
     }
 
     private void selectDates(QuickWeek week,int day) {
         departmentName = week.getDepartment().getName();
+  //      lbTitle.setText(departmentName);
         switch (day){
             case 1:
                 this.dates=week.getDates1();
