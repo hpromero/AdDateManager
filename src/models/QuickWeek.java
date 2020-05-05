@@ -21,12 +21,14 @@ public class QuickWeek {
     private ArrayList<Date> dates6;
     private ArrayList<Date> dates7;
     private LocalDate today = LocalDate.now();
+    private LocalDate firstDay;
     private int startDay = LocalDate.now().getDayOfWeek().getValue();
     private int daysOffset = 0;
 
     public QuickWeek(Department department, int daysOffset) {
         this.department = department;
         this.daysOffset = daysOffset;
+        this.firstDay = LocalDate.now().plusDays(daysOffset);
         dates1 = getDatesPerDay(department, this.today.plusDays(0 + daysOffset));
         dates2 = getDatesPerDay(department, this.today.plusDays(1 + daysOffset));
         dates3 = getDatesPerDay(department, this.today.plusDays(2 + daysOffset));

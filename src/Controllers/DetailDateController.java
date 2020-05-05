@@ -13,6 +13,8 @@ import main.MenuController;
 import models.*;
 import org.neodatis.odb.OID;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 
@@ -51,13 +53,34 @@ public class DetailDateController {
         this.mController = controller;
     }
 
+    public void addDateFromDaily(String weekDay, LocalDate newDate, LocalTime start, LocalTime end){
+        date = new Date("");
+        editmode = true;
+        btnDate.setText("Guardar");
+        btnDate2.setVisible(false);
+        btnDate2.setManaged(false);
+        lTitle.setText("");
+        cbWeekDay.setValue(weekDay);
+        dpDate.setValue(newDate);
+        tpstartTime.setValue(start);
+        tpfinishTime.setValue(end);
+        tgWeekly.setSelected(false);
+        cbWeekDay.setVisible(false);
+        dpDate.setVisible(true);
+        cbWeekDay.setManaged(false);
+        dpDate.setManaged(true);
+
+    }
+
+
+
     public void open(OID oid){
         if (oid==null){
             date = new Date("");
             editmode = true;
             btnDate.setText("Guardar");
             btnDate2.setText("Cancelar");
-            lTitle.setText("Nueva Cita");
+            lTitle.setText("");
         }else{
             editmode = false;
             btnDate.setText("Editar");

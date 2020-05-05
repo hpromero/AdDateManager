@@ -1,15 +1,21 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import models.Date;
 import models.QuickWeek;
 import models.Settings;
@@ -19,6 +25,7 @@ import javax.imageio.ImageIO;
 //import javax.swing.*;
 //import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -36,6 +43,7 @@ public class DailyViewController {
 
     private ArrayList<Date> dates;
     private String departmentName;
+    private String dayOfWeekName;
 
 
     public void setData(QuickWeek week,int day, boolean showDayName) {
@@ -53,34 +61,35 @@ public class DailyViewController {
         switch (day){
             case 1:
                 this.dates=week.getDates1();
-                lbTitle.setText(Date.getWeekDayName(week.getStartDay()));
+                dayOfWeekName = Date.getWeekDayName(week.getStartDay());
                 break;
             case 2:
                 this.dates=week.getDates2();
-                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+1));
+                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+1);
                 break;
             case 3:
                 this.dates=week.getDates3();
-                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+2));
+                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+2);
                 break;
             case 4:
                 this.dates=week.getDates4();
-                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+3));
+                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+3);
                 break;
             case 5:
                 this.dates=week.getDates5();
-                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+4));
+                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+4);
                 break;
             case 6:
                 this.dates=week.getDates6();
-                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+5));
+                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+5);
                 break;
             case 7:
                 this.dates=week.getDates7();
-                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+6));
+                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+6);
                 break;
 
         }
+        lbTitle.setText(dayOfWeekName);
     }
 
     public void setParentController(QuickViewController quickViewController) { }
@@ -121,8 +130,8 @@ public class DailyViewController {
                 height =60;
             }
             if (minutesBlank>0){
-                createBlankDateSpace((int)minutesBlank);
-    //            createBlankHourSpace((int)minutesBlank);
+                createBlankDateSpace((int)minutesBlank,date.getWeekDay(),date.getDate(),lastFinish.plusMinutes(5),date.getStartTime().minusMinutes(5));
+                //TODO: -----------------HORA----TEST?--------------------
             }
             createDateSpace(date.getStartTime().format(formatter),date.getFinishTime().format(formatter),date.getCustomerName(),height);
      //       createBlankHourSpace(height);
@@ -138,7 +147,8 @@ public class DailyViewController {
             }
         }
         double minutesBlank =MINUTES.between(lastFinish,Settings.getEndday());
-        createBlankDateSpace((int)minutesBlank);
+  //      createBlankDateSpace((int)minutesBlank,dayOfWeekName,newDate,start,end);
+        //TODO: -----------------HORA------------------------
     }
 
     private void setHours(){
@@ -202,7 +212,7 @@ public class DailyViewController {
 
 
     }
-    private void createBlankDateSpace(int height){
+    private void createBlankDateSpace(int height,String weekDay, LocalDate newDate, LocalTime start, LocalTime end){
         AnchorPane space= new AnchorPane();
 
         if (height>=30){
@@ -213,6 +223,11 @@ public class DailyViewController {
             Button addButton = new Button();
             addButton.setGraphic(imageView);
             addButton.getStyleClass().add("addDateButton");
+            addButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override public void handle(ActionEvent e) {
+                    newDate(weekDay,newDate,start,end);
+                }
+            });
             VBox vb= new VBox(addButton);
             vb.setAlignment(Pos.CENTER);
             space.getChildren().addAll(vb);
@@ -226,11 +241,32 @@ public class DailyViewController {
             }
         }
         space.setPrefSize(250,height);
-
-
         vbDates.getChildren().add(space);
-
-
     }
+
+
+    public void newDate(String weekDay, LocalDate newDate, LocalTime start, LocalTime end) {
+        try {
+            final Stage secondStage = new Stage();
+            secondStage.initModality(Modality.APPLICATION_MODAL);
+            secondStage.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DetailDate.fxml"));
+            Parent root =  loader.load();
+            DetailDateController controller = loader.getController();
+            controller.addDateFromDaily(weekDay,newDate,start,end);
+            //TODO: meter fecha y hora
+            secondStage.setTitle("Añadir cita");
+            Scene scene = new Scene(root,450,300);
+   //         Scene scene = new Scene(root);
+            secondStage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
+            secondStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 }
