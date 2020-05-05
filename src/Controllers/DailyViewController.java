@@ -38,7 +38,7 @@ public class DailyViewController {
 
     private void selectDates(QuickWeek week,int day) {
         departmentName = week.getDepartment().getName();
-  //      lbTitle.setText(departmentName);
+        lbTitle.setText(departmentName);
         switch (day){
             case 1:
                 this.dates=week.getDates1();
