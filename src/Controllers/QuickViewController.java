@@ -80,34 +80,9 @@ public class QuickViewController {
 
     }
 
-    public void openDaily(int day){
-        ArrayList<QuickWeek> quickWeeks = QuickWeek.getQuickWeekList();
-        vbContent.getChildren().clear();
-        HBox hb = new HBox();
-        hb.setPadding(new Insets(30, 0, 0, 0));
-        hb.setSpacing(30);
-        vbContent.getChildren().add(hb);
-        lbSubTitle.setText("Prueba DailyView");
-        lbTitle.setText("Dia de la semana");
 
 
-        Node[] nodes = new Node[quickWeeks.size()];
-        for (int i = 0; i < nodes.length; i++) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DailyView.fxml"));
-                nodes[i] = loader.load();
-                DailyViewController controller = loader.getController();
-                QuickWeek object = (QuickWeek) quickWeeks.get(i);
-                controller.setData(object,day);
-                controller.setParentController(this);
-                hb.getChildren().add(nodes[i]);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
 
     public void openDailyView(QuickWeek quickWeekSelected, int day){
         vbContent.getChildren().clear();
@@ -115,10 +90,16 @@ public class QuickViewController {
         hb.setPadding(new Insets(30, 0, 0, 0));
         hb.setSpacing(30);
         vbContent.getChildren().add(hb);
-        lbSubTitle.setText("Prueba DailyView");
+/*        lbSubTitle.setText("Prueba DailyView");
         lbTitle.setText("Dia de la semana");
 
+
+ */
         if (quickWeekSelected==null && day!=0) {
+            int dayOfWeek = quickWeeks.get(0).getStartDay()+day-1;
+            String dayName= Date.getWeekDayName(dayOfWeek);
+            lbTitle.setText(dayName);
+            lbSubTitle.setText("Agenda por departamentos");
             Node[] nodes = new Node[quickWeeks.size()];
             for (int i = 0; i < nodes.length; i++) {
                 try {
@@ -126,7 +107,7 @@ public class QuickViewController {
                     nodes[i] = loader.load();
                     DailyViewController controller = loader.getController();
                     QuickWeek object = (QuickWeek) quickWeeks.get(i);
-                    controller.setData(object, day);
+                    controller.setData(object, day,false);
                     controller.setParentController(this);
                     hb.getChildren().add(nodes[i]);
 
@@ -135,11 +116,14 @@ public class QuickViewController {
                 }
             }
         }else if (quickWeekSelected!=null && day!=0){
+            String department = quickWeekSelected.getDepartment().getName();
+            lbTitle.setText(department);
+            lbSubTitle.setText("Agenda del día");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DailyView.fxml"));
                 Node node = loader.load();
                 DailyViewController controller = loader.getController();
-                controller.setData(quickWeekSelected, day);
+                controller.setData(quickWeekSelected, day,true);
                 controller.setParentController(this);
                 hb.getChildren().add(node);
 
@@ -147,12 +131,15 @@ public class QuickViewController {
                 e.printStackTrace();
             }
         }else if (quickWeekSelected!=null && day==0){
+            String department = quickWeekSelected.getDepartment().getName();
+            lbTitle.setText(department);
+            lbSubTitle.setText("Agenda semanal");
             for (int i=1;i<=7;i++){
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DailyView.fxml"));
                     Node node = loader.load();
                     DailyViewController controller = loader.getController();
-                    controller.setData(quickWeekSelected, i);
+                    controller.setData(quickWeekSelected, i,true);
                     controller.setParentController(this);
                     hb.getChildren().add(node);
 

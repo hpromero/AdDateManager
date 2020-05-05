@@ -107,25 +107,6 @@ public class MenuController implements Initializable {
         }
         if(actionEvent.getSource()==btnSettings){
 
-            try {
-                if (session==false){
-                }else{
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/QuickView.fxml"));
-                    Node node = loader.load();
-                    QuickViewController controller = loader.getController();
-                    //TODO: selecionar dia (no aqui, en el Quick comtroller)
-                    controller.openDaily(1);
-                    mainPane.setContent(node);
-                }
-            }
-            catch(IOException iex)
-            {
-                System.out.println("!Error al cargar Ventana!");
-                //TODO: z Delete Flag
-            }
-
-
-
         }
         if(actionEvent.getSource()==btnNewDate)
         {

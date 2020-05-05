@@ -31,35 +31,46 @@ public class DailyViewController {
     private String departmentName;
 
 
-    public void setData(QuickWeek week,int day) {
+    public void setData(QuickWeek week,int day, boolean showDayName) {
         selectDates(week,day);
         listDates();
+        if (!showDayName){
+            departmentName = week.getDepartment().getName();
+            lbTitle.setText(departmentName);
+        }
+
     }
 
     private void selectDates(QuickWeek week,int day) {
-        departmentName = week.getDepartment().getName();
-        lbTitle.setText(departmentName);
+
         switch (day){
             case 1:
                 this.dates=week.getDates1();
+                lbTitle.setText(Date.getWeekDayName(week.getStartDay()));
                 break;
             case 2:
                 this.dates=week.getDates2();
+                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+1));
                 break;
             case 3:
                 this.dates=week.getDates3();
+                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+2));
                 break;
             case 4:
                 this.dates=week.getDates4();
+                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+3));
                 break;
             case 5:
                 this.dates=week.getDates5();
+                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+4));
                 break;
             case 6:
                 this.dates=week.getDates6();
+                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+5));
                 break;
             case 7:
                 this.dates=week.getDates7();
+                lbTitle.setText(Date.getWeekDayName(week.getStartDay()+6));
                 break;
 
         }
@@ -186,7 +197,7 @@ public class DailyViewController {
     }
     private void createBlankDateSpace(int height){
         AnchorPane space = new AnchorPane();
-        space.setPrefSize(10,height);
+        space.setPrefSize(250,height);
         if (height>=30){
  //           space.setStyle("-fx-background-color :  #e67e22;");
         }
