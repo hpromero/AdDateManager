@@ -3,10 +3,8 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Label?>
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DailyViewController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DailyViewController">
    <children>
-    <!--  <Label fx:id="lbTitle" minWidth="150.0" prefHeight="16.0" prefWidth="150.0" styleClass="titleDark"  /> -->
       <VBox fx:id="vbHours" styleClass="greyBackground">
       </VBox>
       <VBox fx:id="vbDates" styleClass="greyBackground">
