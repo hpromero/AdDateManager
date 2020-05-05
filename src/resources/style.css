@@ -79,6 +79,8 @@
    -fx-text-fill: black;
 }
 
+
+
 /* ------- Menú -----------*/
 .mainMenu, .button  {
     -fx-background-color: #212F3D;
@@ -90,7 +92,7 @@
 /* ------- Daily view -----------*/
 .dailyPane{
     -fx-background-color: #F8F9F9 ;
-    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.2), 30, 0.05, 0.0, 0.0 );
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.2), 10, 0.05, 0.0, 0.0 );
     -fx-background-radius: 5;
 }
 
@@ -149,7 +151,9 @@
 }
 /*----------------------------*/
 
-
+.addDateButton {
+    -fx-background-color: #e84393;
+}
 
 
 .scroll-pane, .scroll-pane > .corner {

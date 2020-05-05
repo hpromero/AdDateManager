@@ -5,13 +5,20 @@ import javafx.geometry.Pos;
 
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import models.Date;
 import models.QuickWeek;
 import models.Settings;
 
 
+import javax.imageio.ImageIO;
+//import javax.swing.*;
+//import java.awt.*;
+import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -82,7 +89,7 @@ public class DailyViewController {
         vbHours.getChildren().clear();
         vbDates.getChildren().clear();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         //TODO: FORMATO 24h
         Collections.sort(this.dates);
 
@@ -196,11 +203,31 @@ public class DailyViewController {
 
     }
     private void createBlankDateSpace(int height){
-        AnchorPane space = new AnchorPane();
-        space.setPrefSize(250,height);
+        AnchorPane space= new AnchorPane();
+
         if (height>=30){
- //           space.setStyle("-fx-background-color :  #e67e22;");
+            Image img = new Image(getClass().getResourceAsStream("../resources/images/calendarAdd64.png"));
+            ImageView imageView= new ImageView(img);
+            imageView.setFitHeight(15);
+            imageView.setPreserveRatio(true);
+            Button addButton = new Button();
+            addButton.setGraphic(imageView);
+            addButton.getStyleClass().add("addDateButton");
+            VBox vb= new VBox(addButton);
+            vb.setAlignment(Pos.CENTER);
+            space.getChildren().addAll(vb);
+            AnchorPane.setLeftAnchor(vb, 0.0);
+            AnchorPane.setRightAnchor(vb, 0.0);
+            AnchorPane.setTopAnchor(vb, 0.0);
+            AnchorPane.setBottomAnchor(vb, 0.0);
+            if (height<40){
+                createBlankHourSpace(40-height);
+                height=40;
+            }
         }
+        space.setPrefSize(250,height);
+
+
         vbDates.getChildren().add(space);
 
 
