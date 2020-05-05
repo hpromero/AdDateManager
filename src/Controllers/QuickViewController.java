@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import models.Date;
 import models.ObjectForList;
 import models.QuickWeek;
 import org.neodatis.odb.OID;
@@ -27,7 +28,7 @@ public class QuickViewController {
     @FXML private Label lbTitle;
     @FXML private Button btnAdd;
     private String model;
-
+    private ArrayList<QuickWeek> quickWeeks;
 
 
     public void handleClicks(ActionEvent actionEvent) {
@@ -40,7 +41,7 @@ public class QuickViewController {
 
 
     public void openList(){
-        ArrayList<QuickWeek> quickWeeks = QuickWeek.getQuickWeekList();
+        this.quickWeeks = QuickWeek.getQuickWeekList();
         vbContent.getChildren().clear();
         VBox vb = new VBox();
         vb.setPadding(new Insets(30, 0, 0, 0));
@@ -108,7 +109,59 @@ public class QuickViewController {
 
     }
 
+    public void openDailyView(QuickWeek quickWeekSelected, int day){
+        vbContent.getChildren().clear();
+        HBox hb = new HBox();
+        hb.setPadding(new Insets(30, 0, 0, 0));
+        hb.setSpacing(30);
+        vbContent.getChildren().add(hb);
+        lbSubTitle.setText("Prueba DailyView");
+        lbTitle.setText("Dia de la semana");
 
+        if (quickWeekSelected==null && day!=0) {
+            Node[] nodes = new Node[quickWeeks.size()];
+            for (int i = 0; i < nodes.length; i++) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DailyView.fxml"));
+                    nodes[i] = loader.load();
+                    DailyViewController controller = loader.getController();
+                    QuickWeek object = (QuickWeek) quickWeeks.get(i);
+                    controller.setData(object, day);
+                    controller.setParentController(this);
+                    hb.getChildren().add(nodes[i]);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }else if (quickWeekSelected!=null && day!=0){
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DailyView.fxml"));
+                Node node = loader.load();
+                DailyViewController controller = loader.getController();
+                controller.setData(quickWeekSelected, day);
+                controller.setParentController(this);
+                hb.getChildren().add(node);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if (quickWeekSelected!=null && day==0){
+            for (int i=1;i<=7;i++){
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DailyView.fxml"));
+                    Node node = loader.load();
+                    DailyViewController controller = loader.getController();
+                    controller.setData(quickWeekSelected, i);
+                    controller.setParentController(this);
+                    hb.getChildren().add(node);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 
 /*

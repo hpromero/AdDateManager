@@ -191,7 +191,7 @@ public class DailyViewController {
         AnchorPane space = new AnchorPane();
         space.setPrefSize(10,height);
         if (height>=30){
-            space.setStyle("-fx-background-color :  #e67e22;");
+ //           space.setStyle("-fx-background-color :  #e67e22;");
         }
         vbDates.getChildren().add(space);
 

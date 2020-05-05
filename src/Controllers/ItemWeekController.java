@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -49,7 +50,7 @@ public class ItemWeekController {
     @FXML private Label lbday72;
 
     private QuickViewController mController;
-    private QuickWeek quickWeek;
+    private QuickWeek quickWeek = null;
 
     public void setHeader(int startweekDay, LocalDate startDate){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM");
@@ -129,4 +130,20 @@ public class ItemWeekController {
         }
         return Settings.getColorBarNull();
     }
+
+
+    public void clickday1(){ mController.openDailyView(quickWeek,1); }
+    public void clickday2(){ mController.openDailyView(quickWeek,2); }
+    public void clickday3(){ mController.openDailyView(quickWeek,3); }
+    public void clickday4(){ mController.openDailyView(quickWeek,4); }
+    public void clickday5(){ mController.openDailyView(quickWeek,5); }
+    public void clickday6(){ mController.openDailyView(quickWeek,6); }
+    public void clickday7(){ mController.openDailyView(quickWeek,7); }
+    public void clickDepartment(){ mController.openDailyView(quickWeek,0); }
+
+
+
+
+
 }
+
