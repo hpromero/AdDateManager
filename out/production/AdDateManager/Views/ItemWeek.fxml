@@ -4,18 +4,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:id="mainHbox" alignment="CENTER" maxWidth="1000.0" onMouseClicked="#viewDetail" spacing="20.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ItemWeekController">
+<HBox fx:id="mainHbox" alignment="CENTER" onMouseClicked="#viewDetail" spacing="10.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ItemWeekController">
     <children>
-      <VBox  onMouseClicked="#clickDepartment" alignment="CENTER_LEFT">
+      <VBox alignment="CENTER_LEFT" onMouseClicked="#clickDepartment">
          <HBox.margin>
             <Insets left="10.0" />
          </HBox.margin>
          <children>
-              <Label fx:id="l_text1" minWidth="150.0" prefHeight="16.0" prefWidth="150.0" styleClass="titleDark" alignment="CENTER" />
-             <Label fx:id="l_text2" minWidth="150.0" prefHeight="16.0" prefWidth="150.0" styleClass="titleLight" alignment="CENTER"/>
+              <Label fx:id="l_text1" alignment="CENTER" minWidth="150.0" prefHeight="16.0" prefWidth="150.0" styleClass="titleDark" />
+             <Label fx:id="l_text2" alignment="CENTER" minWidth="150.0" prefHeight="16.0" prefWidth="150.0" styleClass="titleLight" />
          </children>
       </VBox>
-        <HBox fx:id="day1" onMouseClicked="#clickday1" alignment="BOTTOM_CENTER" maxWidth="120.0" minWidth="120.0" prefWidth="120.0">
+      <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+        <HBox fx:id="day1" alignment="BOTTOM_CENTER" minWidth="120.0" onMouseClicked="#clickday1">
             <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
@@ -28,7 +29,8 @@
             </VBox>
             </children>
         </HBox>
-        <HBox fx:id="day2" onMouseClicked="#clickday2" alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+        <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+        <HBox fx:id="day2" alignment="BOTTOM_CENTER" minWidth="120.0" onMouseClicked="#clickday2">
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
@@ -41,7 +43,8 @@
                 </VBox>
             </children>
         </HBox>
-        <HBox fx:id="day3" onMouseClicked="#clickday3" alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+        <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+        <HBox fx:id="day3" alignment="BOTTOM_CENTER" minWidth="120.0" onMouseClicked="#clickday3">
         <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
         </padding>
@@ -54,7 +57,8 @@
             </VBox>
         </children>
         </HBox>
-        <HBox fx:id="day4" onMouseClicked="#clickday4" alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+        <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+        <HBox fx:id="day4" alignment="BOTTOM_CENTER" minWidth="120.0" onMouseClicked="#clickday4">
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
@@ -67,7 +71,8 @@
                 </VBox>
             </children>
         </HBox>
-        <HBox fx:id="day5" onMouseClicked="#clickday5"  alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+        <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+        <HBox fx:id="day5" alignment="BOTTOM_CENTER" minWidth="120.0" onMouseClicked="#clickday5">
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
@@ -80,7 +85,8 @@
                 </VBox>
             </children>
         </HBox>
-        <HBox fx:id="day6"  onMouseClicked="#clickday6" alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+        <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+        <HBox fx:id="day6" alignment="BOTTOM_CENTER" minWidth="120.0" onMouseClicked="#clickday6">
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
@@ -93,7 +99,8 @@
                 </VBox>
             </children>
         </HBox>
-        <HBox fx:id="day7"  onMouseClicked="#clickday7"  alignment="BOTTOM_CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+        <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+        <HBox fx:id="day7" alignment="BOTTOM_CENTER" minWidth="120.0" onMouseClicked="#clickday7">
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
@@ -106,5 +113,6 @@
                 </VBox>
             </children>
         </HBox>
+        <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
     </children>
 </HBox>
