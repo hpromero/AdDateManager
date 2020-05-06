@@ -239,4 +239,23 @@ public class DetailDateController {
     }
 
 
+    public void openDetailPopUp(int id) {
+        editmode = false;
+        btnDate.setText("Editar");
+        btnDate2.setText("Eliminar");
+        this.date = BBDD.getDateById(id);
+        lTitle.setText("Visualizar Cita "+date.getId());
+        cbWeekDay.setDisable(true);
+        chbCustomer.setDisable(true);
+        chbdepartment.setDisable(true);
+        dpDate.setDisable(true);
+        tpstartTime.setDisable(true);
+        tpfinishTime.setDisable(true);
+        lMsg.setText("");
+        tgWeekly.setVisible(false);
+        tgWeekly.setManaged(false);
+//TODO: Visualizar cita desde DailyVieq
+
+    updateViewDate();
+    }
 }

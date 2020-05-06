@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,6 +21,7 @@ import models.Date;
 import models.Department;
 import models.QuickWeek;
 import models.Settings;
+import org.neodatis.odb.OID;
 
 
 import javax.imageio.ImageIO;
@@ -142,8 +144,8 @@ public class DailyViewController {
             if (minutesBlank>0){
                 createBlankDateSpace((int)minutesBlank,lastFinish.plusMinutes(5),date.getStartTime().minusMinutes(5));
             }
+
             createDateSpace(date.getStartTime().format(formatter),date.getFinishTime().format(formatter),date.getCustomerName(),height);
-     //       createBlankHourSpace(height);
             lastFinish = date.getFinishTime();
         }
 
@@ -214,12 +216,35 @@ public class DailyViewController {
         AnchorPane.setLeftAnchor(label, 5.0);
         space.setPrefSize(250,height);
         space.getStyleClass().add("dailyPane");
+  //      space.setOnMouseClicked(openDateDetail());
+        //TODO: VISUALIZAR CITA
   //      space.setStyle("-fx-border-width: 1 1 1 1;\n" +
   //              "    -fx-border-color: #ABB2B9;");
         vbDates.getChildren().add(space);
 
 
     }
+
+    private EventHandler<? super MouseEvent> openDateDetail(int id) {
+        try {
+            final Stage secondStage = new Stage();
+            secondStage.initModality(Modality.APPLICATION_MODAL);
+            secondStage.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DetailDate.fxml"));
+            Parent root =  loader.load();
+            DetailDateController controller = loader.getController();
+            controller.openDetailPopUp(id);
+            secondStage.setTitle("Cita");
+            Scene scene = new Scene(root,480,300);
+            secondStage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
+            secondStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private void createBlankDateSpace(int height,LocalTime start, LocalTime end){
         AnchorPane space= new AnchorPane();
 
