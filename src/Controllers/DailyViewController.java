@@ -234,7 +234,7 @@ public class DailyViewController {
             Parent root =  loader.load();
             DetailDateController controller = loader.getController();
             controller.openDetailPopUp(id);
-            secondStage.setTitle("Cita");
+  //          secondStage.setTitle("Cita");
             Scene scene = new Scene(root,480,300);
             secondStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
