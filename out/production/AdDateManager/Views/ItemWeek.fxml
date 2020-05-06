@@ -11,8 +11,8 @@
             <Insets left="10.0" />
          </HBox.margin>
          <children>
-              <Label fx:id="l_text1" alignment="CENTER_LEFT" minWidth="120.0" prefHeight="16.0" prefWidth="120.0" styleClass="titleDark" />
-             <Label fx:id="l_text2" alignment="CENTER_LEFT" minWidth="120.0" prefHeight="16.0" prefWidth="120.0" styleClass="titleLight" />
+              <Label fx:id="l_text1" alignment="CENTER_LEFT" minWidth="120.0" prefHeight="16.0" prefWidth="180.0" styleClass="titleDark" />
+             <Label fx:id="l_text2" alignment="CENTER_LEFT" minWidth="120.0" prefHeight="16.0" prefWidth="180.0" styleClass="titleLight" />
          </children>
       </VBox>
       <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
