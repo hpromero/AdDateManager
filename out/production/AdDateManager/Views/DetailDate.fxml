@@ -7,79 +7,70 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER_LEFT" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DetailDateController">
+<VBox alignment="CENTER_LEFT" prefHeight="377.0" prefWidth="482.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DetailDateController">
    <children>
-      <HBox alignment="TOP_LEFT" minHeight="40.0" prefHeight="40.0" prefWidth="1000.0" spacing="20.0">
+      <HBox alignment="TOP_LEFT" spacing="20.0">
             <children>
-               <Label fx:id="lTitle" styleClass="subtitleGrey" text="Equipo" />
-               <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
-               <Button fx:id="btnDate" mnemonicParsing="false" onAction="#handleClicks" styleClass="sectionHeadButton" />
-               <Button fx:id="btnDate2" mnemonicParsing="false" onAction="#handleClicks" styleClass="sectionHeadButton" />
+               <Label fx:id="lTitle" styleClass="subtitleGrey" text="Titulo" />
             </children>
       </HBox>
-      <HBox>
+      <VBox spacing="10.0" styleClass="detailSection">
          <children>
-            <VBox styleClass="detailSection">
+            <HBox>
                <children>
-                  <HBox>
-                     <children>
-                        <VBox spacing="10.0">
-                           <children>
-                              <HBox layoutX="30.0" layoutY="162.0">
-                                 <children>
-                                    <Label fx:id="lMsg" style="-fx-text-fill: red" />
-                                    <Region prefHeight="26.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
-                                    <JFXToggleButton fx:id="tgWeekly" onAction="#weeklyChange" prefHeight="26.0" prefWidth="160.0" text="Semanal" />
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label prefHeight="26.0" prefWidth="140.0" text="Fecha:" />
-                                    <JFXDatePicker fx:id="dpDate" prefHeight="26.0" prefWidth="150.0" />
-                                    <ComboBox fx:id="cbWeekDay" prefHeight="26.0" prefWidth="150.0" />
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="30.0" layoutY="92.0">
-                                 <children>
-                                    <Label prefHeight="26.0" prefWidth="140.0" text="Hora:" />
-                                    <Label prefHeight="26.0" prefWidth="25.0" text="De:" />
-                                    <JFXTimePicker fx:id="tpstartTime" prefWidth="125.0" />
-                                    <Label prefHeight="26.0" prefWidth="25.0" text=" a:" />
-                                    <JFXTimePicker fx:id="tpfinishTime" prefWidth="125.0" />
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label prefHeight="26.0" prefWidth="140.0" text="Cliente" />
-                                    <ComboBox fx:id="chbCustomer" prefWidth="300.0" styleClass="combo-box-base" />
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label prefHeight="26.0" prefWidth="140.0" text="Especialidad:" />
-                                    <ComboBox fx:id="chbdepartment" prefWidth="300.0" styleClass="combo-box-base" />
-                                 </children>
-                              </HBox>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                  </HBox>
+                  <Label fx:id="lMsg" style="-fx-text-fill: red" />
+                  <Region prefHeight="26.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
+                  <JFXToggleButton fx:id="tgWeekly" onAction="#weeklyChange" prefHeight="37.0" prefWidth="160.0" text="Semanal" />
                </children>
-            </VBox>
-            <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <HBox>
+               <children>
+                  <Label prefHeight="26.0" prefWidth="140.0" text="Fecha:" />
+                  <JFXDatePicker fx:id="dpDate" prefHeight="26.0" prefWidth="150.0" />
+                  <ComboBox fx:id="cbWeekDay" prefHeight="26.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="92.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="140.0" text="Hora:" />
+                  <Label prefHeight="26.0" prefWidth="25.0" text="De:" />
+                  <JFXTimePicker fx:id="tpstartTime" prefWidth="125.0" />
+                  <Label prefHeight="26.0" prefWidth="25.0" text=" a:" />
+                  <JFXTimePicker fx:id="tpfinishTime" prefWidth="125.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label prefHeight="26.0" prefWidth="140.0" text="Cliente" />
+                  <ComboBox fx:id="chbCustomer" prefWidth="300.0" styleClass="combo-box-base" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label prefHeight="26.0" prefWidth="140.0" text="Especialidad:" />
+                  <ComboBox fx:id="chbdepartment" prefWidth="300.0" styleClass="combo-box-base" />
+               </children>
+            </HBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <HBox layoutX="30.0" layoutY="198.0">
+               <children>
+                     <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+                     <Button fx:id="btnDate" mnemonicParsing="false" onAction="#handleClicks" styleClass="sectionHeadButton" />
+                     <Button fx:id="btnDate2" mnemonicParsing="false" onAction="#handleClicks" styleClass="sectionHeadButton" />
+               </children>
+            </HBox>
          </children>
-      </HBox>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </VBox>
 
 
    </children>
