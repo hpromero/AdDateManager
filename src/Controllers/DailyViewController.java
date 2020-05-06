@@ -17,6 +17,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Date;
+import models.Department;
 import models.QuickWeek;
 import models.Settings;
 
@@ -44,13 +45,16 @@ public class DailyViewController {
     private ArrayList<Date> dates;
     private String departmentName;
     private String dayOfWeekName;
+    private LocalDate localDate;
+    private Department department;
 
 
     public void setData(QuickWeek week,int day, boolean showDayName) {
+        department = week.getDepartment();
         selectDates(week,day);
         listDates();
         if (!showDayName){
-            departmentName = week.getDepartment().getName();
+            departmentName = department.getName();
             lbTitle.setText(departmentName);
         }
 
@@ -62,30 +66,37 @@ public class DailyViewController {
             case 1:
                 this.dates=week.getDates1();
                 dayOfWeekName = Date.getWeekDayName(week.getStartDay());
+                localDate = week.getStartDate();
                 break;
             case 2:
                 this.dates=week.getDates2();
                 dayOfWeekName = Date.getWeekDayName(week.getStartDay()+1);
+                localDate = week.getStartDate().plusDays(1);
                 break;
             case 3:
                 this.dates=week.getDates3();
                 dayOfWeekName = Date.getWeekDayName(week.getStartDay()+2);
+                localDate = week.getStartDate().plusDays(2);
                 break;
             case 4:
                 this.dates=week.getDates4();
                 dayOfWeekName = Date.getWeekDayName(week.getStartDay()+3);
+                localDate = week.getStartDate().plusDays(3);
                 break;
             case 5:
                 this.dates=week.getDates5();
                 dayOfWeekName = Date.getWeekDayName(week.getStartDay()+4);
+                localDate = week.getStartDate().plusDays(4);
                 break;
             case 6:
                 this.dates=week.getDates6();
                 dayOfWeekName = Date.getWeekDayName(week.getStartDay()+5);
+                localDate = week.getStartDate().plusDays(5);
                 break;
             case 7:
                 this.dates=week.getDates7();
                 dayOfWeekName = Date.getWeekDayName(week.getStartDay()+6);
+                localDate = week.getStartDate().plusDays(6);
                 break;
 
         }
@@ -99,7 +110,6 @@ public class DailyViewController {
         vbDates.getChildren().clear();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        //TODO: FORMATO 24h
         Collections.sort(this.dates);
 
 
@@ -130,8 +140,7 @@ public class DailyViewController {
                 height =60;
             }
             if (minutesBlank>0){
-                createBlankDateSpace((int)minutesBlank,date.getWeekDay(),date.getDate(),lastFinish.plusMinutes(5),date.getStartTime().minusMinutes(5));
-                //TODO: -----------------HORA----TEST?--------------------
+                createBlankDateSpace((int)minutesBlank,lastFinish.plusMinutes(5),date.getStartTime().minusMinutes(5));
             }
             createDateSpace(date.getStartTime().format(formatter),date.getFinishTime().format(formatter),date.getCustomerName(),height);
      //       createBlankHourSpace(height);
@@ -147,8 +156,7 @@ public class DailyViewController {
             }
         }
         double minutesBlank =MINUTES.between(lastFinish,Settings.getEndday());
-  //      createBlankDateSpace((int)minutesBlank,dayOfWeekName,newDate,start,end);
-        //TODO: -----------------HORA------------------------
+        createBlankDateSpace((int)minutesBlank,lastFinish,Settings.getEndday());
     }
 
     private void setHours(){
@@ -212,7 +220,7 @@ public class DailyViewController {
 
 
     }
-    private void createBlankDateSpace(int height,String weekDay, LocalDate newDate, LocalTime start, LocalTime end){
+    private void createBlankDateSpace(int height,LocalTime start, LocalTime end){
         AnchorPane space= new AnchorPane();
 
         if (height>=30){
@@ -225,7 +233,7 @@ public class DailyViewController {
             addButton.getStyleClass().add("addDateButton");
             addButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent e) {
-                    newDate(weekDay,newDate,start,end);
+                    newDate(start,end);
                 }
             });
             VBox vb= new VBox(addButton);
@@ -245,7 +253,7 @@ public class DailyViewController {
     }
 
 
-    public void newDate(String weekDay, LocalDate newDate, LocalTime start, LocalTime end) {
+    public void newDate(LocalTime start, LocalTime end) {
         try {
             final Stage secondStage = new Stage();
             secondStage.initModality(Modality.APPLICATION_MODAL);
@@ -253,10 +261,9 @@ public class DailyViewController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DetailDate.fxml"));
             Parent root =  loader.load();
             DetailDateController controller = loader.getController();
-            controller.addDateFromDaily(weekDay,newDate,start,end);
-            //TODO: meter fecha y hora
+            controller.addDateFromDaily(dayOfWeekName,localDate,start,end,department);
             secondStage.setTitle("Añadir cita");
-            Scene scene = new Scene(root,450,300);
+            Scene scene = new Scene(root,480,300);
    //         Scene scene = new Scene(root);
             secondStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());

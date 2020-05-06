@@ -29,13 +29,13 @@ public class QuickWeek {
         this.department = department;
         this.daysOffset = daysOffset;
         this.firstDay = LocalDate.now().plusDays(daysOffset);
-        dates1 = getDatesPerDay(department, this.today.plusDays(0 + daysOffset));
-        dates2 = getDatesPerDay(department, this.today.plusDays(1 + daysOffset));
-        dates3 = getDatesPerDay(department, this.today.plusDays(2 + daysOffset));
-        dates4 = getDatesPerDay(department, this.today.plusDays(3 + daysOffset));
-        dates5 = getDatesPerDay(department, this.today.plusDays(4 + daysOffset));
-        dates6 = getDatesPerDay(department, this.today.plusDays(5 + daysOffset));
-        dates7 = getDatesPerDay(department, this.today.plusDays(6 + daysOffset));
+        dates1 = getDatesPerDay(department, this.firstDay);
+        dates2 = getDatesPerDay(department, this.firstDay.plusDays(1));
+        dates3 = getDatesPerDay(department, this.firstDay.plusDays(2));
+        dates4 = getDatesPerDay(department, this.firstDay.plusDays(3));
+        dates5 = getDatesPerDay(department, this.firstDay.plusDays(4));
+        dates6 = getDatesPerDay(department, this.firstDay.plusDays(5));
+        dates7 = getDatesPerDay(department, this.firstDay.plusDays(6));
     }
 
     public Department getDepartment() { return department; }
@@ -49,7 +49,7 @@ public class QuickWeek {
     public int getStartDay() { return startDay; }
 
     public LocalDate getStartDate() {
-        return today.plusDays(daysOffset);
+        return this.firstDay;
     }
 
     private ArrayList<Date> getDatesPerDay (Department department, LocalDate dateDay){

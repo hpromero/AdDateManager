@@ -53,7 +53,7 @@ public class DetailDateController {
         this.mController = controller;
     }
 
-    public void addDateFromDaily(String weekDay, LocalDate newDate, LocalTime start, LocalTime end){
+    public void addDateFromDaily(String weekDay, LocalDate newDate, LocalTime start, LocalTime end,Department department){
         date = new Date("");
         editmode = true;
         btnDate.setText("Guardar");
@@ -69,6 +69,7 @@ public class DetailDateController {
         dpDate.setVisible(true);
         cbWeekDay.setManaged(false);
         dpDate.setManaged(true);
+        chbdepartment.setValue(department);
 
     }
 
