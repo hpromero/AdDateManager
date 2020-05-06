@@ -60,11 +60,11 @@ public class QuickWeek {
      return dates;
     }
 
-    public static ArrayList<QuickWeek> getQuickWeekList(){
+    public static ArrayList<QuickWeek> getQuickWeekList(int daysOffset){
         ArrayList<QuickWeek> quickWeeks = new ArrayList<>();
         ObservableList<Department> departments = BBDD.getDepartmentObservableList();
         for (Department item: departments){
-            QuickWeek quickWeek = new QuickWeek(item,0);
+            QuickWeek quickWeek = new QuickWeek(item,daysOffset);
             quickWeeks.add(quickWeek);
         }
         if (quickWeeks.size()!=0){
