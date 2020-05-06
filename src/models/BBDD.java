@@ -419,6 +419,9 @@ public class BBDD {
         return newOid;
     }
 
+
+
+
     public static ArrayList<ObjectForList> getDateList() {
 
         ArrayList<ObjectForList> dateList = new ArrayList<>();
@@ -493,6 +496,23 @@ public class BBDD {
         return dateList;
     }
 
+    public static Date getDateById(int id) {
+        try{
+            openConection();
+            ICriterion criterio = Where.equal("id", id);
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> dateodb = odb.getObjects(query);
+            if (dateodb.size()>0){
+                return (Date) dateodb.getFirst();
+            }
+
+        }catch(Exception e){
+            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
+        }finally{
+            closeConection();
+        }
+        return null;
+    }
 
     //--------------------- Others methods ----------------------------
 

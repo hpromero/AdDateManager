@@ -15,6 +15,7 @@
 
 
 <?import javafx.scene.layout.Region?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <VBox spacing="5.0" styleClass="generalBackground" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.QuickViewController">
     <padding>
         <Insets bottom="10.0" left="30.0" right="30.0" top="5.0" />
@@ -23,26 +24,46 @@
         <children>
             <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="250.0" spacing="15.0">
                 <children>
-                    <Label fx:id="lbTitle" text="Equipo" styleClass="titleDark" ></Label>
-                    <Label fx:id="lbSubTitle" styleClass="subtitleGrey" text="Listado" />
+                    <Label fx:id="lbTitle"  styleClass="titleDark" ></Label>
+                    <Label fx:id="lbSubTitle" styleClass="subtitleGrey"  />
                 </children>
                 <opaqueInsets>
                     <Insets top="10.0" />
                 </opaqueInsets>
             </VBox>
             <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnAdd" styleClass="sectionHeadButton" onAction="#handleClicks" >
-                <graphic>
-                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../resources/images/anadirUsuario_64px.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-                <HBox.margin>
-                    <Insets right="10.0" />
-                </HBox.margin>
-            </Button>
+            <VBox fx:id="quickWeekControls" alignment="CENTER_RIGHT" spacing="5">
+                <children>
+                    <JFXDatePicker fx:id="dpStartDate" onAction="#handleClicks" prefHeight="26.0" prefWidth="200.0" />
+
+                    <HBox prefHeight="20.0" prefWidth="200.0" alignment="CENTER">
+                        <children>
+                            <Button fx:id="btnLeft" styleClass="sectionHeadButton" onAction="#handleClicks" >
+                                <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../resources/images/cilcleArrowLeft.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </Button>
+                            <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lbWeekNumber" styleClass="subtitleGrey" />
+                            <Region prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+                            <Button fx:id="btnRight" styleClass="sectionHeadButton" onAction="#handleClicks" >
+                                <graphic>
+                                    <ImageView fitHeight="15" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../resources/images/circleArrowRight.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </Button>
+                        </children>
+                    </HBox>
+
+                </children>
+            </VBox>
         </children>
     </HBox>
     <VBox fx:id="vbContent" spacing="5.0" styleClass="generalBackground">

@@ -89,6 +89,7 @@ public class Date implements Comparable<Date> {
         this.finishTime = dateCopied.finishTime;
         this.weekly = dateCopied.weekly;
 
+
     }
 
     public static String getWeekDayName (int key){

@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +14,19 @@ import javafx.scene.layout.VBox;
 import models.Date;
 import models.ObjectForList;
 import models.QuickWeek;
+import models.Settings;
 import org.neodatis.odb.OID;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
+
+import static java.time.temporal.ChronoUnit.DAYS;
+import static java.time.temporal.ChronoUnit.MINUTES;
 
 
 public class QuickViewController {
@@ -26,22 +34,56 @@ public class QuickViewController {
     @FXML private VBox vbContent = null;
     @FXML private Label lbSubTitle;
     @FXML private Label lbTitle;
-    @FXML private Button btnAdd;
+    @FXML private Label lbWeekNumber;
+    @FXML private Button btnLeft;
+    @FXML private Button btnRight;
+    @FXML private VBox quickWeekControls;
+    @FXML private JFXDatePicker dpStartDate;
     private String model;
     private ArrayList<QuickWeek> quickWeeks;
+    private LocalDate startDate;
+    private int dayOffSet = 0;
 
 
     public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnAdd) {
-      //      openDetail(null,this.model,"Nuevo");
+        if (actionEvent.getSource() == btnLeft) {
+            int dayOfWeek = startDate.getDayOfWeek().getValue();
+            if (dayOfWeek > 1){
+                dayOffSet = dayOffSet - (dayOfWeek-1);
+            }else{
+                dayOffSet = dayOffSet - 7;
+            }
+            openList();
         }
+        if (actionEvent.getSource() == btnRight) {
+            int dayOfWeek = startDate.getDayOfWeek().getValue();
+            if (dayOfWeek > 1){
+                dayOffSet = dayOffSet + (8-dayOfWeek);
+            }else{
+                dayOffSet = dayOffSet + 7;
+            }
+            openList();
+        }
+        if (actionEvent.getSource() == dpStartDate) {
+            dayOffSet = (int)DAYS.between(LocalDate.now(),dpStartDate.getValue());
+            openList();
+        }
+
     }
 
 
 
 
+
+
     public void openList(){
-        this.quickWeeks = QuickWeek.getQuickWeekList();
+        this.quickWeeks = QuickWeek.getQuickWeekList(dayOffSet);
+        startDate = quickWeeks.get(0).getStartDate();
+        dpStartDate.setValue(startDate);
+        WeekFields weekFields = WeekFields.ISO.of(Locale.getDefault());
+        int weekNumber = startDate.get(weekFields.weekOfWeekBasedYear());
+        lbWeekNumber.setText("Semana nº "+weekNumber);
+
         vbContent.getChildren().clear();
         VBox vb = new VBox();
         vb.setPadding(new Insets(30, 0, 0, 0));
@@ -85,6 +127,7 @@ public class QuickViewController {
 
 
     public void openDailyView(QuickWeek quickWeekSelected, int day){
+        //TODO: ocultar controles QuickWeek
         vbContent.getChildren().clear();
         HBox hb = new HBox();
         hb.setPadding(new Insets(30, 0, 0, 0));

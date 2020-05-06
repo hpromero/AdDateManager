@@ -53,15 +53,15 @@ public class ItemWeekController {
     private QuickWeek quickWeek = null;
 
     public void setHeader(int startweekDay, LocalDate startDate){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
         mainHbox.setMargin(l_text1, new Insets(0, 5, 0, 10));
-        lbday1.setText(Date.getWeekDayName(startweekDay));
-        lbday2.setText(Date.getWeekDayName(startweekDay+1));
-        lbday3.setText(Date.getWeekDayName(startweekDay+2));
-        lbday4.setText(Date.getWeekDayName(startweekDay+3));
-        lbday5.setText(Date.getWeekDayName(startweekDay+4));
-        lbday6.setText(Date.getWeekDayName(startweekDay+5));
-        lbday7.setText(Date.getWeekDayName(startweekDay+6));
+        lbday1.setText(Date.getWeekDayName(startDate.getDayOfWeek().getValue()));
+        lbday2.setText(Date.getWeekDayName(startDate.plusDays(1).getDayOfWeek().getValue()));
+        lbday3.setText(Date.getWeekDayName(startDate.plusDays(2).getDayOfWeek().getValue()));
+        lbday4.setText(Date.getWeekDayName(startDate.plusDays(3).getDayOfWeek().getValue()));
+        lbday5.setText(Date.getWeekDayName(startDate.plusDays(4).getDayOfWeek().getValue()));
+        lbday6.setText(Date.getWeekDayName(startDate.plusDays(5).getDayOfWeek().getValue()));
+        lbday7.setText(Date.getWeekDayName(startDate.plusDays(6).getDayOfWeek().getValue()));
         lbday12.setText(startDate.format(formatter));
         lbday22.setText(startDate.plusDays(1).format(formatter));
         lbday32.setText(startDate.plusDays(2).format(formatter));
@@ -69,7 +69,6 @@ public class ItemWeekController {
         lbday52.setText(startDate.plusDays(4).format(formatter));
         lbday62.setText(startDate.plusDays(5).format(formatter));
         lbday72.setText(startDate.plusDays(6).format(formatter));
-//startDate.plus.format(DateTimeFormatter.ofPattern("dd-MMM"))
     }
 
 
