@@ -399,27 +399,71 @@ public class BBDD {
 
 
 
-    public static OID saveDateByOID(OID oid, Date date){
-        OID newOid=null;
-        try {
-            openConection();
-            if (oid==null){
-                newOid = odb.store(date);
-            }else{
-                Object object = odb.getObjectFromId(oid);
-                Date dateToUpdate = (Date)object;
-                dateToUpdate.copyDate(date);
-                newOid = odb.store(dateToUpdate);
-            }
-            infoBox("","Mensaje", "Cita guardada correctamente",INFORMATION);
-        } catch(Exception e) {
-            infoBox(e.toString(),"Error","Cita no guardada",ERROR);
-        }finally{ closeConection(); }
+    public static int saveDate(Date date){
+        boolean isSave = false;
+        if (date.getId() == 0){
+            date.setId();
+            isSave = saveNewDate(date);
+        }else{
+            isSave = updateDate(date);
+        }
 
-        return newOid;
+        if (isSave){
+            infoBox("","Mensaje", "Cita guardada correctamente",INFORMATION);
+            return date.getId();
+        }else{
+            infoBox("","Error","Cita no guardada",ERROR);
+        }
+        return 0;
     }
 
+    private static boolean saveNewDate(Date date){
+        openConection();
+        if(odb.store(date) != null){
+            return true;
+        }
+        closeConection();
+        return false;
+    }
 
+    private static boolean updateDate(Date date){
+        try{
+            openConection();
+            ICriterion criterio = Where.equal("id", date.getId());
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> datesodb = odb.getObjects(query);
+            Date dateOdb = datesodb.getFirst();
+            dateOdb.copyDate(date);
+            if(odb.store(dateOdb) != null){
+                return true;
+            }
+        }catch(Exception e){
+        }finally{
+            closeConection();
+        }
+        return false;
+    }
+    public static boolean deleteDate(Date date){
+        try{
+            openConection();
+            ICriterion criterio = Where.equal("id", date.getId());
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> datesodb = odb.getObjects(query);
+            Date dateOdb = datesodb.getFirst();
+
+            if(confirmationBox("Eliminar","Desea elimiar la cita?")) {
+                odb.delete(dateOdb);
+                infoBox("", "Mensaje", "Cita elimiando correctamente", INFORMATION);
+                return true;
+            }
+
+        }catch(Exception e){
+            infoBox(e.toString(),"Error","La cita no ha podido ser eliminada",ERROR);
+        }finally{
+            closeConection();
+        }
+        return false;
+    }
 
 
     public static ArrayList<ObjectForList> getDateList() {

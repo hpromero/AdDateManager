@@ -7,11 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import main.MenuController;
 import models.*;
-import org.neodatis.odb.OID;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,8 +35,9 @@ public class DetailDateController {
 
     private Date date;
     private static boolean editmode;
-    private SectionController mController;
-    private OID oid;
+    private SectionController sectionController;
+    private DailyViewController dailyViewController;
+    private boolean fromPopUp = false;
 
     ObservableList<Department> departments = FXCollections.observableArrayList();
     ObservableList<String> weekDays = FXCollections.observableArrayList("Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo");
@@ -49,17 +51,20 @@ public class DetailDateController {
         cbWeekDay.setItems(weekDays);
 
     }
-    public void setParentController(SectionController controller) {
-        this.mController = controller;
+    public void setSectionController(SectionController controller) {
+        this.sectionController = controller;
+    }
+    public void setDailyController(DailyViewController controller) {
+        this.dailyViewController = controller;
     }
 
     public void addDateFromDaily(String weekDay, LocalDate newDate, LocalTime start, LocalTime end,Department department){
+        this.fromPopUp = true;
         date = new Date("");
         editmode = true;
         btnDate.setText("Guardar");
-        btnDate2.setVisible(false);
-        btnDate2.setManaged(false);
-        lTitle.setText("");
+        btnDate2.setText("Cancelar");
+        lTitle.setText("Nueva Cita");
         cbWeekDay.setValue(weekDay);
         dpDate.setValue(newDate);
         tpstartTime.setValue(start);
@@ -75,8 +80,9 @@ public class DetailDateController {
 
 
 
-    public void open(OID oid){
-        if (oid==null){
+    public void open(int id,boolean fromPopUp){
+        this.fromPopUp = fromPopUp;
+        if (id==0){
             date = new Date("");
             editmode = true;
             btnDate.setText("Guardar");
@@ -86,9 +92,7 @@ public class DetailDateController {
             editmode = false;
             btnDate.setText("Editar");
             btnDate2.setText("Eliminar");
-            this.oid = oid;
-            Object object= BBDD.getObjectByOid(oid);
-            this.date = (Date)object;
+            this.date = BBDD.getDateById(id);                   //----------Acabo de cambiar de OID a id
             lTitle.setText("Visualizar Cita "+date.getId());
             cbWeekDay.setDisable(true);
             chbCustomer.setDisable(true);
@@ -147,13 +151,10 @@ public class DetailDateController {
         }
     }
     private void saveDate (){
-        if (date.getId()==0){
-            date.setId();
-        }
         date.updateDate(cbWeekDay.getValue(), chbCustomer.getValue().getDni(), chbdepartment.getValue().getId(),dpDate.getValue(),tpstartTime.getValue(),tpfinishTime.getValue(),tgWeekly.isSelected());
-        this.oid=BBDD.saveDateByOID(this.oid,date);
-        if (this.oid!=null){
-                open(this.oid);
+        int id = BBDD.saveDate(date);
+        if (id!=0){
+                open(id,this.fromPopUp);
             }
 
     }
@@ -163,6 +164,12 @@ public class DetailDateController {
         if (actionEvent.getSource() == btnDate) {
             if(this.editmode){
                 saveDate();
+                if (this.fromPopUp){
+                    dailyViewController.refresh();
+                    Node source = (Node)  actionEvent.getSource();
+                    Stage stage  = (Stage) source.getScene().getWindow();
+                    stage.close();
+                }
             }else{
                 if (MenuController.isAdmin())
                     setEditable();
@@ -172,16 +179,31 @@ public class DetailDateController {
         if (actionEvent.getSource() == btnDate2) {
            if(this.editmode){
                if(this.date.getId()==0){
-                   ArrayList<ObjectForList> objectList = BBDD.getDateList();
-                   mController.openList("Equipo",objectList,"Date");
+                   if (this.fromPopUp){
+                       Node source = (Node)  actionEvent.getSource();
+                       Stage stage  = (Stage) source.getScene().getWindow();
+                       stage.close();
+                   }else{
+                       ArrayList<ObjectForList> objectList = BBDD.getDateList();
+                       sectionController.openList("Citas",objectList,"Date");
+                   }
                }else{
-                   open(this.oid);
+                   open(date.getId(),this.fromPopUp);
                }
             }else{
                 if (MenuController.isAdmin())
-                    if (BBDD.deleteObjectByOid(this.oid,this.date.getWeekDay())){
-                        ArrayList<ObjectForList> objectList = BBDD.getDateList();
-                        mController.openList("Equipo",objectList,"Date");
+                    if (BBDD.deleteDate(this.date)){
+                        if (this.fromPopUp){
+                            //TODO: Cambiar ación al borrar proa Actualizar padre y salir si es Popup
+                            dailyViewController.refresh();
+                            Node source = (Node)  actionEvent.getSource();
+                            Stage stage  = (Stage) source.getScene().getWindow();
+                            stage.close();
+                        }else{
+                            ArrayList<ObjectForList> objectList = BBDD.getDateList();
+                            sectionController.openList("Citas",objectList,"Date");
+                        }
+
                 }
             }
 
@@ -239,23 +261,5 @@ public class DetailDateController {
     }
 
 
-    public void openDetailPopUp(int id) {
-        editmode = false;
-        btnDate.setText("Editar");
-        btnDate2.setText("Eliminar");
-        this.date = BBDD.getDateById(id);
-        lTitle.setText("Visualizar Cita "+date.getId());
-        cbWeekDay.setDisable(true);
-        chbCustomer.setDisable(true);
-        chbdepartment.setDisable(true);
-        dpDate.setDisable(true);
-        tpstartTime.setDisable(true);
-        tpfinishTime.setDisable(true);
-        lMsg.setText("");
-        tgWeekly.setVisible(false);
-        tgWeekly.setManaged(false);
-//TODO: Visualizar cita desde DailyVieq
 
-    updateViewDate();
-    }
 }

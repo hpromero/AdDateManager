@@ -13,8 +13,10 @@ public class ObjectForList {
     private String colorBox;
     private String modelObject;
     private OID oid;
+    private int id;
 
-    public ObjectForList(OID oid, String text1, String text2, String text3, String text4, String textbox, String icon, String colorItem, String colorBox, String modelObject) {
+    public ObjectForList(int id, OID oid, String text1, String text2, String text3, String text4, String textbox, String icon, String colorItem, String colorBox, String modelObject) {
+        this.id = id;
         this.oid = oid;
         this.text1 = text1;
         this.text2 = text2;
@@ -65,5 +67,8 @@ public class ObjectForList {
 
     public OID getOid() {
         return oid;
+    }
+    public int getId() {
+        return id;
     }
 }

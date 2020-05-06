@@ -22,12 +22,14 @@ public class ItemSectionController {
 
     private OID oid;
     private String model;
+    private int id;
 
     public void setParentController(SectionController controller) {
         this.mController = controller;
     }
 
     public void setData(ObjectForList item) {
+        id = item.getId();
         oid = item.getOid();
         model = item.getModelObject();
         l_text1.setText(item.getText1());
@@ -41,7 +43,7 @@ public class ItemSectionController {
     }
 
     public void viewDetail() {
-            mController.openDetail(oid,model,l_text1.getText());
+            mController.openDetail(id, oid,model,l_text1.getText());
     }
 
 

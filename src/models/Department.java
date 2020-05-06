@@ -32,7 +32,7 @@ public class Department {
 
 
     static public ObjectForList DepartmentToObjectForList(Department department, OID oid){
-        return new ObjectForList(oid, department.name, department.assignedName, department.assignedName2,"","","","","#ecf0f1","Department");
+        return new ObjectForList(department.id,oid, department.name, department.assignedName, department.assignedName2,"","","","","#ecf0f1","Department");
 
     }
 

@@ -60,7 +60,7 @@ public class Date implements Comparable<Date> {
         }else{
             dateDay=formattedDate;
         }
-        return new ObjectForList(oid, dateDay, date.customerName, date.departmentName,"","","","","#ecf0f1","Date");
+        return new ObjectForList(date.id, oid, dateDay, date.customerName, date.departmentName,"","","","","#ecf0f1","Date");
     }
 
     public void updateDate(String weekDay, String customer, int department, LocalDate date, LocalTime startTime, LocalTime finishTime, boolean weekly) {

@@ -38,6 +38,16 @@ public class QuickWeek {
         dates7 = getDatesPerDay(department, this.firstDay.plusDays(6));
     }
 
+    public void refresh(){
+        dates1 = getDatesPerDay(department, this.firstDay);
+        dates2 = getDatesPerDay(department, this.firstDay.plusDays(1));
+        dates3 = getDatesPerDay(department, this.firstDay.plusDays(2));
+        dates4 = getDatesPerDay(department, this.firstDay.plusDays(3));
+        dates5 = getDatesPerDay(department, this.firstDay.plusDays(4));
+        dates6 = getDatesPerDay(department, this.firstDay.plusDays(5));
+        dates7 = getDatesPerDay(department, this.firstDay.plusDays(6));
+    }
+
     public Department getDepartment() { return department; }
     public ArrayList<Date> getDates1() { return dates1; }
     public ArrayList<Date> getDates2() { return dates2; }

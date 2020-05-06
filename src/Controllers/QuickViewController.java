@@ -202,7 +202,7 @@ public class QuickViewController {
             Node node = loader.load();
             DetailUserController controller = loader.getController();
             controller.open(oid);
-            controller.setParentController(this);
+            controller.setSectionController(this);
             vbContent.getChildren().add(node);
         } catch (IOException e) {
             e.printStackTrace();

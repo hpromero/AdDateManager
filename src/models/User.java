@@ -46,7 +46,7 @@ public class User {
 
 
     static public ObjectForList UserToObjectForList(User user, OID oid){
-        return new ObjectForList(oid, user.name, user.dni, user.email,user.phone,"Activo","","","#27ae60","User");
+        return new ObjectForList(0,oid, user.name, user.dni, user.email,user.phone,"Activo","","","#27ae60","User");
     }
 
 

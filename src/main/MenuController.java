@@ -59,10 +59,10 @@ public class MenuController implements Initializable {
 /*
         Date date1 = new Date("Lunes");
         date1.setId();
-        BBDD.saveDateByOID(null, date1);
+        BBDD.saveDate(null, date1);
         Date date2 = new Date("MArtes");
         date2.setId();
-        BBDD.saveDateByOID(null, date2);
+        BBDD.saveDate(null, date2);
 */
         //-------------Eliminar----------------
 

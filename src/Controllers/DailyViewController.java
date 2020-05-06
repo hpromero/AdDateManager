@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,10 +20,8 @@ import models.Date;
 import models.Department;
 import models.QuickWeek;
 import models.Settings;
-import org.neodatis.odb.OID;
 
 
-import javax.imageio.ImageIO;
 //import javax.swing.*;
 //import java.awt.*;
 import java.io.IOException;
@@ -33,7 +30,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Set;
 
 import static java.time.temporal.ChronoUnit.*;
 
@@ -50,19 +46,35 @@ public class DailyViewController {
     private LocalDate localDate;
     private Department department;
 
+    //prueba refresh ---------------
+    private QuickWeek week;
+    private int day;
+    private boolean showDayName;
+    //--------------
+
 
     public void setData(QuickWeek week,int day, boolean showDayName) {
+        //prueba refresh ---------------
+        this.week = week;
+        this.day = day;
+        this.showDayName = showDayName;
+        //--------------
+
         department = week.getDepartment();
-        selectDates(week,day);
+        selectDates();
         listDates();
         if (!showDayName){
             departmentName = department.getName();
             lbTitle.setText(departmentName);
         }
-
+    }
+    public void refresh(){
+        this.week.refresh();
+        selectDates();
+        listDates();
     }
 
-    private void selectDates(QuickWeek week,int day) {
+    private void selectDates() {
 
         switch (day){
             case 1:
@@ -233,8 +245,8 @@ public class DailyViewController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DetailDate.fxml"));
             Parent root =  loader.load();
             DetailDateController controller = loader.getController();
-            controller.openDetailPopUp(id);
-  //          secondStage.setTitle("Cita");
+            controller.open(id,true);
+            controller.setDailyController(this);
             Scene scene = new Scene(root,480,300);
             secondStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
@@ -287,7 +299,7 @@ public class DailyViewController {
             Parent root =  loader.load();
             DetailDateController controller = loader.getController();
             controller.addDateFromDaily(dayOfWeekName,localDate,start,end,department);
-            secondStage.setTitle("Añadir cita");
+            controller.setDailyController(this);
             Scene scene = new Scene(root,480,300);
    //         Scene scene = new Scene(root);
             secondStage.setScene(scene);

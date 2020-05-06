@@ -60,7 +60,7 @@ public class Customer {
 
 
     static public ObjectForList CustomerToObjectForList(Customer customer, OID oid){
-        return new ObjectForList(oid, customer.name, customer.dni, customer.email,customer.phone,customer.active,"","","#27ae60","Customer");
+        return new ObjectForList(0,oid, customer.name, customer.dni, customer.email,customer.phone,customer.active,"","","#27ae60","Customer");
     }
 
     public void updateCustomer(String dni, String name, LocalDate birthDate, String gender, String guardian, String phone, String email, String altContact, String altPhone, boolean rgpd, String school, String course, String derivedFrom, String knowUsFor) {

@@ -29,11 +29,11 @@ public class SectionController {
 
     public void handleClicks(ActionEvent actionEvent) {
         if (actionEvent.getSource() == btnAdd) {
-            openDetail(null,this.model,"Nuevo");
+            openDetail(0,null,this.model,"Nuevo");
         }
     }
 
-    public void openDetail(OID oid, String model, String subTitle){
+    public void openDetail(int id, OID oid, String model, String subTitle){
         this.model=model;
         switch (model){
             case "User":
@@ -50,7 +50,7 @@ public class SectionController {
                 break;
             case "Date":
                 lbSubTitle.setText(subTitle);
-                openDateDetail(oid);
+                openDateDetail(id);
                 break;
             default:
                 break;
@@ -126,14 +126,14 @@ public class SectionController {
         }
     }
 
-    public void openDateDetail(OID oid){
+    public void openDateDetail(int id){
         vbContent.getChildren().clear();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DetailDate.fxml"));
             Node node = loader.load();
             DetailDateController controller = loader.getController();
-            controller.open(oid);
-            controller.setParentController(this);
+            controller.open(id,false);
+            controller.setSectionController(this);
             vbContent.getChildren().add(node);
         } catch (IOException e) {
             e.printStackTrace();
