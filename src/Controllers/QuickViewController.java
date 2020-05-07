@@ -12,21 +12,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Date;
-import models.ObjectForList;
 import models.QuickWeek;
-import models.Settings;
-import org.neodatis.odb.OID;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;
-import static java.time.temporal.ChronoUnit.MINUTES;
 
 
 public class QuickViewController {
@@ -39,7 +34,6 @@ public class QuickViewController {
     @FXML private Button btnRight;
     @FXML private VBox quickWeekControls;
     @FXML private JFXDatePicker dpStartDate;
-    private String model;
     private ArrayList<QuickWeek> quickWeeks;
     private LocalDate startDate;
     private int dayOffSet = 0;
@@ -77,6 +71,8 @@ public class QuickViewController {
 
 
     public void openList(){
+        quickWeekControls.setVisible(true);
+        quickWeekControls.setManaged(true);
         this.quickWeeks = QuickWeek.getQuickWeekList(dayOffSet);
         startDate = quickWeeks.get(0).getStartDate();
         dpStartDate.setValue(startDate);
@@ -127,21 +123,19 @@ public class QuickViewController {
 
 
     public void openDailyView(QuickWeek quickWeekSelected, int day){
-        //TODO: ocultar controles QuickWeek
+        quickWeekControls.setVisible(false);
+        quickWeekControls.setManaged(false);
         vbContent.getChildren().clear();
         HBox hb = new HBox();
         hb.setPadding(new Insets(30, 0, 0, 0));
         hb.setSpacing(30);
         vbContent.getChildren().add(hb);
-/*        lbSubTitle.setText("Prueba DailyView");
-        lbTitle.setText("Dia de la semana");
 
-
- */
         if (quickWeekSelected==null && day!=0) {
-            int dayOfWeek = quickWeeks.get(0).getStartDay()+day-1;
-            String dayName= Date.getWeekDayName(dayOfWeek);
-            lbTitle.setText(dayName);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
+            LocalDate dayChoosed = startDate.plusDays(day-1);
+            String dayNameChoosed= Date.getWeekDayName(dayChoosed.getDayOfWeek().getValue());
+            lbTitle.setText(dayNameChoosed+" "+dayChoosed.format(formatter));
             lbSubTitle.setText("Agenda por departamentos");
             Node[] nodes = new Node[quickWeeks.size()];
             for (int i = 0; i < nodes.length; i++) {
@@ -194,21 +188,5 @@ public class QuickViewController {
     }
 
 
-/*
-    public void openUserDetail(OID oid){
-        vbContent.getChildren().clear();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/DetailUser.fxml"));
-            Node node = loader.load();
-            DetailUserController controller = loader.getController();
-            controller.open(oid);
-            controller.setSectionController(this);
-            vbContent.getChildren().add(node);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-*/
 
 }

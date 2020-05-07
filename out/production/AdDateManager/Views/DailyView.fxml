@@ -6,7 +6,8 @@
 
 <VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DailyViewController">
    <children>
-      <Label fx:id="lbTitle" alignment="CENTER" minWidth="275.0" prefHeight="16.0" prefWidth="275.0" styleClass="titleDark">
+      <Label fx:id="lbTitle" alignment="CENTER" minWidth="275.0" prefHeight="16.0" prefWidth="275.0" styleClass="titleDark"/>
+      <Label fx:id="lbSubTitle" alignment="CENTER" minWidth="275.0" prefHeight="16.0" prefWidth="275.0" styleClass="subtitleGrey">
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin></Label>

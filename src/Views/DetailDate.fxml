@@ -17,14 +17,17 @@
             <children>
                <Label fx:id="lTitle" styleClass="titleDark" text="Titulo" />
             </children>
+         <padding>
+            <Insets top="10.0"/>
+         </padding>
       </HBox>
       <VBox spacing="10.0" >
          <children>
             <HBox>
                <children>
                   <Label fx:id="lMsg" style="-fx-text-fill: red" />
-                  <Region prefHeight="26.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
-                  <JFXToggleButton fx:id="tgWeekly" onAction="#weeklyChange" prefHeight="37.0" prefWidth="160.0" text="Semanal" />
+                  <Region prefHeight="20.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
+                  <JFXToggleButton fx:id="tgWeekly" onAction="#weeklyChange" prefHeight="20.0" prefWidth="160.0" text="Semanal" />
                </children>
             </HBox>
             <HBox>

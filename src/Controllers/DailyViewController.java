@@ -38,6 +38,7 @@ public class DailyViewController {
     @FXML private VBox vbHours;
     @FXML private VBox vbDates;
     @FXML private Label lbTitle;
+    @FXML private Label lbSubTitle;
 
 
     private ArrayList<Date> dates;
@@ -45,20 +46,13 @@ public class DailyViewController {
     private String dayOfWeekName;
     private LocalDate localDate;
     private Department department;
-
-    //prueba refresh ---------------
     private QuickWeek week;
     private int day;
-    private boolean showDayName;
-    //--------------
 
 
     public void setData(QuickWeek week,int day, boolean showDayName) {
-        //prueba refresh ---------------
         this.week = week;
         this.day = day;
-        this.showDayName = showDayName;
-        //--------------
 
         department = week.getDepartment();
         selectDates();
@@ -75,46 +69,36 @@ public class DailyViewController {
     }
 
     private void selectDates() {
-
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
+                localDate = week.getStartDate().plusDays(day-1);
+                dayOfWeekName = Date.getWeekDayName(localDate.getDayOfWeek().getValue());
+                lbTitle.setText(dayOfWeekName);
+                lbSubTitle.setText(localDate.format(formatter));
         switch (day){
             case 1:
                 this.dates=week.getDates1();
-                dayOfWeekName = Date.getWeekDayName(week.getStartDay());
-                localDate = week.getStartDate();
                 break;
             case 2:
                 this.dates=week.getDates2();
-                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+1);
-                localDate = week.getStartDate().plusDays(1);
                 break;
             case 3:
                 this.dates=week.getDates3();
-                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+2);
-                localDate = week.getStartDate().plusDays(2);
                 break;
             case 4:
                 this.dates=week.getDates4();
-                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+3);
-                localDate = week.getStartDate().plusDays(3);
                 break;
             case 5:
                 this.dates=week.getDates5();
-                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+4);
-                localDate = week.getStartDate().plusDays(4);
                 break;
             case 6:
                 this.dates=week.getDates6();
-                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+5);
-                localDate = week.getStartDate().plusDays(5);
                 break;
             case 7:
                 this.dates=week.getDates7();
-                dayOfWeekName = Date.getWeekDayName(week.getStartDay()+6);
-                localDate = week.getStartDate().plusDays(6);
                 break;
 
         }
-        lbTitle.setText(dayOfWeekName);
+
     }
 
     public void setParentController(QuickViewController quickViewController) { }
