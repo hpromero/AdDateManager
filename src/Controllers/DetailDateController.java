@@ -49,7 +49,8 @@ public class DetailDateController {
         setCustomerCombo(chbCustomer);
         setDepartmentCombo(chbdepartment);
         cbWeekDay.setItems(weekDays);
-
+        tpstartTime.set24HourView(true);
+        tpfinishTime.set24HourView(true);
     }
     public void setSectionController(SectionController controller) {
         this.sectionController = controller;
@@ -150,21 +151,43 @@ public class DetailDateController {
             dpDate.setManaged(true);
         }
     }
-    private void saveDate (){
+    private boolean saveDate (){
         date.updateDate(cbWeekDay.getValue(), chbCustomer.getValue().getDni(), chbdepartment.getValue().getId(),dpDate.getValue(),tpstartTime.getValue(),tpfinishTime.getValue(),tgWeekly.isSelected());
-        int id = BBDD.saveDate(date);
-        if (id!=0){
-                open(id,this.fromPopUp);
-            }
+       if (checkFreeDate()){
+           int id = BBDD.saveDate(date);
+           if (id!=0){
+               open(id,this.fromPopUp);
+               return true;
+           }
+       }
 
+     return false;
+    }
+
+    private boolean checkFreeDate() {
+        //TODO:
+        ArrayList<Date> datesFound = new ArrayList<>();
+        if (date.getWeekly()){
+            datesFound = BBDD.checkDaysDates(datesFound,date.getDepartment(),date.getDate(),date.getStartTime(),date.getFinishTime(),date.getId(),date.getWeekDay());
+            datesFound = BBDD.checkWeekDayDates(datesFound,date.getDepartment(),date.getWeekDay(),date.getStartTime(), date.getFinishTime(),date.getId());
+
+        }else{
+            datesFound = BBDD.checkDaysDates(datesFound,date.getDepartment(),date.getDate(),date.getStartTime(),date.getFinishTime(),date.getId(),"");
+            datesFound = BBDD.checkWeekDayDates(datesFound,date.getDepartment(),Date.getWeekDayName(date.getDate().getDayOfWeek().getValue()),date.getStartTime(), date.getFinishTime(),date.getId());
+        }
+        if (datesFound.size()==0){
+            return true;
+        }else{
+            System.out.println("Existen citas en esa fecha y hora");
+        }
+        return false;
     }
 
 
     public void handleClicks(ActionEvent actionEvent) {
         if (actionEvent.getSource() == btnDate) {
             if(this.editmode){
-                saveDate();
-                if (this.fromPopUp){
+                if (saveDate() && this.fromPopUp){
                     dailyViewController.refresh();
                     Node source = (Node)  actionEvent.getSource();
                     Stage stage  = (Stage) source.getScene().getWindow();

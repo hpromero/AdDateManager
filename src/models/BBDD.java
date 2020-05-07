@@ -15,6 +15,7 @@ import org.neodatis.odb.impl.core.query.values.ValuesCriteriaQuery;
 import javax.security.auth.callback.ConfirmationCallback;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static javafx.scene.control.Alert.AlertType.*;
@@ -557,6 +558,66 @@ public class BBDD {
         }
         return null;
     }
+
+
+    public static ArrayList<Date> checkDaysDates(ArrayList<Date> dateList, int department, LocalDate dateDayToCheck, LocalTime startDateToCheck, LocalTime finishDateToCheck,int idToCheck,String weekDay) {
+        try {
+            openConection();
+            ICriterion criterio = Where.and()
+                    .add(Where.equal("department", department))
+                    .add(Where.equal("weekly", false));
+            //TODO: Añadir filtro citas pasadas
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> datesodb = odb.getObjects(query);
+            while(datesodb.hasNext()){
+                Date date = datesodb.next();
+                if (date.getDate().isEqual(dateDayToCheck) || weekDay.equals(Date.getWeekDayName(date.getDate().getDayOfWeek().getValue()))) {
+                    if ((startDateToCheck.isBefore(date.getFinishTime())&&startDateToCheck.isAfter(date.getStartTime())
+                            || finishDateToCheck.isBefore(date.getFinishTime())&&finishDateToCheck.isAfter(date.getStartTime())
+                            || startDateToCheck.isBefore(date.getStartTime())&&finishDateToCheck.isAfter(date.getFinishTime()))
+                            && date.getId()!=idToCheck){
+                        dateList.add(date);
+                    }
+
+                }
+            }
+
+        } catch(Exception e) {
+            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
+        }finally{
+            closeConection();
+        }
+        return dateList;
+    }
+
+    public static ArrayList<Date> checkWeekDayDates(ArrayList<Date> dateList,int department, String weekDay,LocalTime startDateToCheck, LocalTime finishDateToCheck,int idToCheck) {
+        try {
+            openConection();
+            ICriterion criterio = Where.and()
+                    .add(Where.equal("department", department))
+                    .add(Where.equal("weekDay", weekDay))
+                    .add(Where.equal("weekly", true));
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> datesodb = odb.getObjects(query);
+            while(datesodb.hasNext()){
+                Date date = datesodb.next();
+                if ((startDateToCheck.isBefore(date.getFinishTime())&&startDateToCheck.isAfter(date.getStartTime())
+                        || finishDateToCheck.isBefore(date.getFinishTime())&&finishDateToCheck.isAfter(date.getStartTime())
+                        || startDateToCheck.isBefore(date.getStartTime())&&finishDateToCheck.isAfter(date.getFinishTime()))
+                        && date.getId()!=idToCheck){
+                    dateList.add(date);
+                }
+            }
+
+        } catch(Exception e) {
+            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
+        }finally{
+            closeConection();
+        }
+        return dateList;
+    }
+
+
 
     //--------------------- Others methods ----------------------------
 
