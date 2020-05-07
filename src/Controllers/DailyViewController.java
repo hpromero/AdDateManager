@@ -231,7 +231,7 @@ public class DailyViewController {
             DetailDateController controller = loader.getController();
             controller.open(id,true);
             controller.setDailyController(this);
-            Scene scene = new Scene(root,480,300);
+            Scene scene = new Scene(root);
             secondStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
             secondStage.show();
@@ -284,7 +284,7 @@ public class DailyViewController {
             DetailDateController controller = loader.getController();
             controller.addDateFromDaily(dayOfWeekName,localDate,start,end,department);
             controller.setDailyController(this);
-            Scene scene = new Scene(root,480,300);
+            Scene scene = new Scene(root);
    //         Scene scene = new Scene(root);
             secondStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());

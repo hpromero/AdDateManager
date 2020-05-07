@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import main.MenuController;
@@ -32,6 +33,8 @@ public class DetailDateController {
     @FXML private JFXTimePicker tpstartTime;
     @FXML private JFXTimePicker tpfinishTime;
     @FXML private JFXToggleButton tgWeekly;
+    @FXML private HBox hbWeekDay;
+    @FXML private Label lbdpDate;
 
     private Date date;
     private static boolean editmode;
@@ -71,9 +74,9 @@ public class DetailDateController {
         tpstartTime.setValue(start);
         tpfinishTime.setValue(end);
         tgWeekly.setSelected(false);
-        cbWeekDay.setVisible(false);
+        hbWeekDay.setVisible(false);
         dpDate.setVisible(true);
-        cbWeekDay.setManaged(false);
+        hbWeekDay.setManaged(false);
         dpDate.setManaged(true);
         chbdepartment.setValue(department);
 
@@ -140,15 +143,13 @@ public class DetailDateController {
         tpfinishTime.setValue(date.getFinishTime());
         tgWeekly.setSelected(date.getWeekly());
         if (this.date.getWeekly()){
-            cbWeekDay.setVisible(true);
-            dpDate.setVisible(false);
-            cbWeekDay.setManaged(true);
-            dpDate.setManaged(false);
+            hbWeekDay.setVisible(true);
+            hbWeekDay.setManaged(true);
+            lbdpDate.setText("Inicio:");
         }else{
-            cbWeekDay.setVisible(false);
-            dpDate.setVisible(true);
-            cbWeekDay.setManaged(false);
-            dpDate.setManaged(true);
+            hbWeekDay.setVisible(false);
+            hbWeekDay.setManaged(false);
+            lbdpDate.setText("Fecha:");
         }
     }
     private boolean saveDate (){
@@ -271,15 +272,13 @@ public class DetailDateController {
 
     public void weeklyChange(){
         if (tgWeekly.isSelected()){
-            cbWeekDay.setVisible(true);
-            dpDate.setVisible(false);
-            cbWeekDay.setManaged(true);
-            dpDate.setManaged(false);
+            hbWeekDay.setVisible(true);
+            hbWeekDay.setManaged(true);
+            lbdpDate.setText("Inicio:");
         }else{
-            cbWeekDay.setVisible(false);
-            dpDate.setVisible(true);
-            cbWeekDay.setManaged(false);
-            dpDate.setManaged(true);
+            hbWeekDay.setVisible(false);
+            hbWeekDay.setManaged(false);
+            lbdpDate.setText("Fecha:");
         }
     }
 

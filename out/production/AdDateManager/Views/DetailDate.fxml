@@ -13,13 +13,13 @@
 
 <VBox alignment="CENTER_LEFT" styleClass="detailSection" prefHeight="377.0" prefWidth="482.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DetailDateController">
    <children>
-      <HBox alignment="TOP_LEFT" spacing="20.0">
+      <HBox alignment="CENTER_LEFT" spacing="20.0" >
             <children>
                <Label fx:id="lTitle" styleClass="titleDark" text="Titulo" />
             </children>
-         <padding>
+         <HBox.margin>
             <Insets top="10.0"/>
-         </padding>
+         </HBox.margin>
       </HBox>
       <VBox spacing="10.0" >
          <children>
@@ -32,8 +32,13 @@
             </HBox>
             <HBox>
                <children>
-                  <Label prefHeight="26.0" prefWidth="140.0" text="Fecha:" />
+                  <Label fx:id="lbdpDate" prefHeight="26.0" prefWidth="140.0" text="Fecha:" />
                   <JFXDatePicker fx:id="dpDate" prefHeight="26.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox fx:id="hbWeekDay">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="140.0" text="Dia:" />
                   <ComboBox fx:id="cbWeekDay" prefHeight="26.0" prefWidth="150.0" />
                </children>
             </HBox>
