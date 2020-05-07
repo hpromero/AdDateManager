@@ -160,19 +160,26 @@ public class DetailDateController {
         }else{
             hbWeekDay.setVisible(false);
             hbWeekDay.setManaged(false);
-            dpDateEnd.setVisible(false);
+            dpDateEnd.setVisible(true);//TODO: PONER EN FALSE ----------------------
             lbdpDate.setVisible(false);
             lbdpDateEnd.setVisible(false);
             lbdpDate.setManaged(false);
         }
     }
     private boolean saveDate (){
+        if (!tgWeekly.isSelected()){
+            dpDateEnd.setValue(dpDate.getValue());
+            cbWeekDay.setValue(Date.getWeekDayName(dpDate.getValue().getDayOfWeek().getValue()));
+        }
         date.updateDate(cbWeekDay.getValue(), chbCustomer.getValue().getDni(), chbdepartment.getValue().getId(),dpDate.getValue(),tpstartTime.getValue(),tpfinishTime.getValue(),tgWeekly.isSelected(),dpDateEnd.getValue());
        if (checkFreeDate()){
-           int id = BBDD.saveDate(date);
-           if (id!=0){
-               open(id,this.fromPopUp);
-               return true;
+           if (date.getStartTime().isBefore(date.getFinishTime()) && (date.getDate().isBefore(date.getDateEnd())||date.getDate().equals(date.getDateEnd()))){
+               int id = BBDD.saveDate(date);
+               if (id!=0) {
+                   open(id, this.fromPopUp);
+                   return true;
+
+               }
            }
        }
 
@@ -180,20 +187,13 @@ public class DetailDateController {
     }
 
     private boolean checkFreeDate() {
-        //TODO: Arreglar comprobador de fechas
-        ArrayList<Date> datesFound = new ArrayList<>();
-        if (date.getWeekly()){
-            datesFound = BBDD.checkDaysDates(datesFound,date.getDepartment(),date.getDate(),date.getStartTime(),date.getFinishTime(),date.getId(),date.getWeekDay());
-            datesFound = BBDD.checkWeekDayDates(datesFound,date.getDepartment(),date.getWeekDay(),date.getStartTime(), date.getFinishTime(),date.getId());
-
-        }else{
-            datesFound = BBDD.checkDaysDates(datesFound,date.getDepartment(),date.getDate(),date.getStartTime(),date.getFinishTime(),date.getId(),"");
-            datesFound = BBDD.checkWeekDayDates(datesFound,date.getDepartment(),Date.getWeekDayName(date.getDate().getDayOfWeek().getValue()),date.getStartTime(), date.getFinishTime(),date.getId());
-        }
+        ArrayList<Date> datesFound = BBDD.checkDatesCoincidences(date);
         if (datesFound.size()==0){
             return true;
         }else{
             System.out.println("Existen citas en esa fecha y hora");
+
+            //TODO: DAR AVISO FECHA COINCIDENTE
         }
         return false;
     }
@@ -294,7 +294,7 @@ public class DetailDateController {
         }else{
             hbWeekDay.setVisible(false);
             hbWeekDay.setManaged(false);
-            dpDateEnd.setVisible(false);
+            dpDateEnd.setVisible(true);//TODO: PONER EN FALSE ----------------------
             lbdpDate.setVisible(false);
             lbdpDateEnd.setVisible(false);
             lbdpDate.setManaged(false);

@@ -487,18 +487,18 @@ public class BBDD {
         return dateList;
     }
 
-    public static ArrayList<Date> getDaysDates(ArrayList<Date> dateList,int department, LocalDate dateDay) {
+    public static ArrayList<Date> getDaysDates2(int department, LocalDate dateDay, LocalDate dateDayEnd) {
+        ArrayList<Date> dateList = new ArrayList<>();
         try {
             openConection();
             ICriterion criterio = Where.and()
                     .add(Where.equal("department", department))
-                    .add(Where.equal("weekly", false));
-            //TODO: Añadir filtro citas pasadas
+                    .add(Where.equal("weekDay", Date.getWeekDayName(dateDay.getDayOfWeek().getValue())));
             IQuery query = new CriteriaQuery(Date.class,criterio);
             Objects<Date> datesodb = odb.getObjects(query);
             while(datesodb.hasNext()){
                 Date date = datesodb.next();
-                if (date.getDate().isEqual(dateDay)) {
+                if (date.dateIsInsideDays(dateDay,dateDayEnd)) {
                     dateList.add(date);
                 }
             }
@@ -510,36 +510,8 @@ public class BBDD {
         }
         return dateList;
     }
-    /*
-     ICriterion criterio = Where.and()
-                    .add(Where.equal("department", department))
-                    .add(Where.equal("date", dateDay))
-                    .add(Where.equal("weekly", false));
-     */
 
 
-
-    public static ArrayList<Date> getWeekDayDates(ArrayList<Date> dateList,int department, String weekDay) {
-        try {
-            openConection();
-            ICriterion criterio = Where.and()
-                    .add(Where.equal("department", department))
-                    .add(Where.equal("weekDay", weekDay))
-                    .add(Where.equal("weekly", true));
-            IQuery query = new CriteriaQuery(Date.class,criterio);
-            Objects<Date> datesodb = odb.getObjects(query);
-            while(datesodb.hasNext()){
-                Date date = datesodb.next();
-                dateList.add(date);
-            }
-
-        } catch(Exception e) {
-            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
-        }finally{
-            closeConection();
-        }
-        return dateList;
-    }
 
     public static Date getDateById(int id) {
         try{
@@ -620,7 +592,29 @@ public class BBDD {
         }
         return dateList;
     }
+    public static ArrayList<Date> checkDatesCoincidences(Date dateToCheck) {
+        ArrayList<Date> dateList = new ArrayList<>();
+        try {
+            openConection();
+            ICriterion criterio = Where.and()
+                    .add(Where.equal("department", dateToCheck.getDepartment()))
+                    .add(Where.equal("weekDay", dateToCheck.getWeekDay()));
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> datesodb = odb.getObjects(query);
+            while(datesodb.hasNext()){
+                Date date = datesodb.next();
+                if (date.dateIsCoincidence(dateToCheck)) {
+                    dateList.add(date);
+                }
+            }
 
+        } catch(Exception e) {
+            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
+        }finally{
+            closeConection();
+        }
+        return dateList;
+    }
 
 
     //--------------------- Others methods ----------------------------

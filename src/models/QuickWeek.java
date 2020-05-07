@@ -62,13 +62,20 @@ public class QuickWeek {
         return this.firstDay;
     }
 
-    private ArrayList<Date> getDatesPerDay (Department department, LocalDate dateDay){
+ /*   private ArrayList<Date> getDatesPerDay (Department department, LocalDate dateDay){
         ArrayList<Date> dates = new ArrayList<>();
         dates = BBDD.getDaysDates(dates,department.getId(),dateDay);
         dates = BBDD.getWeekDayDates(dates,department.getId(),Date.getWeekDayName(dateDay.getDayOfWeek().getValue()));
 
      return dates;
     }
+
+
+  */
+ private ArrayList<Date> getDatesPerDay (Department department, LocalDate dateDay){
+     return  BBDD.getDaysDates2(department.getId(),dateDay,dateDay);
+ }
+
 
     public static ArrayList<QuickWeek> getQuickWeekList(int daysOffset){
         ArrayList<QuickWeek> quickWeeks = new ArrayList<>();

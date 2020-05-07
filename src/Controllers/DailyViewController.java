@@ -141,7 +141,7 @@ public class DailyViewController {
                 createBlankDateSpace((int)minutesBlank,lastFinish.plusMinutes(5),date.getStartTime().minusMinutes(5));
             }
 
-            createDateSpace(date.getStartTime().format(formatter),date.getFinishTime().format(formatter),date.getCustomerName(),height,date.getId());
+            createDateSpace(date.getStartTime().format(formatter),date.getFinishTime().format(formatter),date.getCustomerName(),height,date.getId(),date.getWeekly());
             lastFinish = date.getFinishTime();
         }
 
@@ -201,7 +201,7 @@ public class DailyViewController {
         vbHours.getChildren().add(space);
     }
 
-    private void createDateSpace(String startHour,String endHour,String customerName,int height,int id){
+    private void createDateSpace(String startHour,String endHour,String customerName,int height,int id, boolean wkly){
         Label label = new Label("("+startHour+"/");
         Label label2 = new Label(endHour+")");
         Label label3 = new Label(customerName);
@@ -213,9 +213,11 @@ public class DailyViewController {
         space.setPrefSize(250,height);
         space.getStyleClass().add("dailyPane");
         space.setOnMouseClicked(event -> openDateDetail(id));
-        //TODO: VISUALIZAR CITA
-  //      space.setStyle("-fx-border-width: 1 1 1 1;\n" +
-  //              "    -fx-border-color: #ABB2B9;");
+        if (wkly){
+            space.setStyle("-fx-background-color: #74b9ff;");
+        }else{
+            space.setStyle("-fx-background-color: #ffeaa7;");
+        }
         vbDates.getChildren().add(space);
 
 

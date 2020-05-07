@@ -100,26 +100,26 @@ public class InitialData {
         saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), false));
         saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(8, 00, 00), LocalTime.of(8, 55, 00), false));
         saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(15, 00, 00), LocalTime.of(18, 00, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(15, 00, 00), LocalTime.of(18, 00, 00), false));
 
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), false));
         saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), false));
         saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), false));
         saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), false));
         saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), false));
 
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(16, 20, 00), LocalTime.of(16, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(16, 00, 00), LocalTime.of(16, 20, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(13, 15, 00), LocalTime.of(14, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(9, 00, 00), LocalTime.of(11, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(16, 20, 00), LocalTime.of(16, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(16, 00, 00), LocalTime.of(16, 20, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(13, 15, 00), LocalTime.of(14, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(9, 00, 00), LocalTime.of(11, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), false));
 
 
         saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 2, "Psicología", LocalDate.now().plusDays(0), LocalTime.of(13, 00, 00), LocalTime.of(14, 55, 00), false));

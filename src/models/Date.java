@@ -29,6 +29,10 @@ public class Date implements Comparable<Date> {
     public Date(String weekDay, String customer, String customerName, int department, String departmentName, LocalDate date, LocalTime startTime, LocalTime finishTime, boolean weekly) {
         setId();
         this.weekDay = weekDay;
+        if(!weekly){
+            this.dateEnd=date;
+            this.weekDay= Date.getWeekDayName(date.getDayOfWeek().getValue());
+        }
         this.customer = customer;
         this.customerName = customerName;
         this.department = department;
@@ -117,6 +121,29 @@ public class Date implements Comparable<Date> {
                 (this.getStartTime().equals(date.getStartTime()) ? 0 : 1));
     }
 
+
+    public boolean dateIsInsideDays(LocalDate dateDay, LocalDate endDateDay){
+        if ((this.date.isBefore(dateDay)&&this.dateEnd.isBefore(dateDay))
+                ||(this.date.isAfter(endDateDay)&&this.dateEnd.isAfter(endDateDay))){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean dateIsCoincidence(Date dateToCkeck){
+        if ((this.date.isBefore(dateToCkeck.date)&&this.dateEnd.isBefore(dateToCkeck.date))
+                ||(this.date.isAfter(dateToCkeck.dateEnd)&&this.dateEnd.isAfter(dateToCkeck.dateEnd))){
+            return false;
+        }else{
+            if ((this.startTime.isBefore(dateToCkeck.startTime)&&(this.finishTime.isBefore(dateToCkeck.startTime)||this.finishTime.equals(dateToCkeck.startTime)))
+                    ||(this.startTime.equals(dateToCkeck.finishTime)||(this.startTime.isAfter(dateToCkeck.finishTime))&&this.finishTime.isAfter(dateToCkeck.finishTime))){
+                return false;
+            }else{
+                return (this.id!=dateToCkeck.id);
+            }
+        }
+
+    }
 
 
 }
