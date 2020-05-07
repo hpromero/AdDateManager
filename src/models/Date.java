@@ -16,6 +16,7 @@ public class Date implements Comparable<Date> {
     private int department = 0;
     private String departmentName ="";
     private LocalDate date = LocalDate.now();
+    private LocalDate dateEnd = LocalDate.now().plusMonths(1);
     private LocalTime startTime = LocalTime.now();
     private LocalTime finishTime = LocalTime.now().plusMinutes(60);
     private boolean weekly = true;
@@ -45,6 +46,7 @@ public class Date implements Comparable<Date> {
     public String getCustomerName() { return customerName; }
     public String getDepartmentName() { return departmentName; }
     public LocalDate getDate() { return date; }
+    public LocalDate getDateEnd() { return dateEnd; }
     public boolean getWeekly() { return weekly; }
     public LocalTime getStartTime() { return startTime; }
     public LocalTime getFinishTime() { return finishTime; }
@@ -63,13 +65,14 @@ public class Date implements Comparable<Date> {
         return new ObjectForList(date.id, oid, dateDay, date.customerName, date.departmentName,"","","","","#ecf0f1","Date");
     }
 
-    public void updateDate(String weekDay, String customer, int department, LocalDate date, LocalTime startTime, LocalTime finishTime, boolean weekly) {
+    public void updateDate(String weekDay, String customer, int department, LocalDate date, LocalTime startTime, LocalTime finishTime, boolean weekly, LocalDate dateEnd) {
         this.weekDay = weekDay;
         this.customer = customer;
         this.department = department;
         this.customerName = Customer.getCustomerFromDni(customer).getName();
         this.departmentName = Department.getDepartmentFromId(department).getName();
         this.date = date;
+        this.dateEnd = dateEnd;
         this.startTime = startTime;
         this.finishTime = finishTime;
         this.weekly = weekly;
@@ -85,6 +88,7 @@ public class Date implements Comparable<Date> {
         this.customerName = dateCopied.getCustomerName();
         this.departmentName = dateCopied.getDepartmentName();
         this.date = dateCopied.getDate();
+        this.dateEnd = dateCopied.getDateEnd();
         this.startTime = dateCopied.startTime;
         this.finishTime = dateCopied.finishTime;
         this.weekly = dateCopied.weekly;
@@ -112,5 +116,7 @@ public class Date implements Comparable<Date> {
         return (this.getStartTime().isBefore(date.getStartTime())  ? -1 :
                 (this.getStartTime().equals(date.getStartTime()) ? 0 : 1));
     }
+
+
 
 }

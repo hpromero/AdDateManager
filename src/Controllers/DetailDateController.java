@@ -30,11 +30,13 @@ public class DetailDateController {
     @FXML private ComboBox<Customer> chbCustomer = new ComboBox<>();
     @FXML private ComboBox<Department> chbdepartment = new ComboBox<>();
     @FXML private JFXDatePicker dpDate;
+    @FXML private JFXDatePicker dpDateEnd;
     @FXML private JFXTimePicker tpstartTime;
     @FXML private JFXTimePicker tpfinishTime;
     @FXML private JFXToggleButton tgWeekly;
     @FXML private HBox hbWeekDay;
     @FXML private Label lbdpDate;
+    @FXML private Label lbdpDateEnd;
 
     private Date date;
     private static boolean editmode;
@@ -71,14 +73,17 @@ public class DetailDateController {
         lTitle.setText("Nueva Cita");
         cbWeekDay.setValue(weekDay);
         dpDate.setValue(newDate);
+        dpDateEnd.setValue(newDate.plusMonths(1));
         tpstartTime.setValue(start);
         tpfinishTime.setValue(end);
         tgWeekly.setSelected(false);
         hbWeekDay.setVisible(false);
-        dpDate.setVisible(true);
         hbWeekDay.setManaged(false);
-        dpDate.setManaged(true);
         chbdepartment.setValue(department);
+        dpDateEnd.setVisible(false);
+        lbdpDate.setVisible(false);
+        lbdpDateEnd.setVisible(false);
+        lbdpDate.setManaged(false);
 
     }
 
@@ -96,12 +101,13 @@ public class DetailDateController {
             editmode = false;
             btnDate.setText("Editar");
             btnDate2.setText("Eliminar");
-            this.date = BBDD.getDateById(id);                   //----------Acabo de cambiar de OID a id
+            this.date = BBDD.getDateById(id);
             lTitle.setText("Visualizar Cita "+date.getId());
             cbWeekDay.setDisable(true);
             chbCustomer.setDisable(true);
             chbdepartment.setDisable(true);
             dpDate.setDisable(true);
+            dpDateEnd.setDisable(true);
             tpstartTime.setDisable(true);
             tpfinishTime.setDisable(true);
             lMsg.setText("");
@@ -127,6 +133,7 @@ public class DetailDateController {
             chbdepartment.setDisable(false);
             lMsg.setText("");
             dpDate.setDisable(false);
+            dpDateEnd.setDisable(false);
             tpstartTime.setDisable(false);
             tpfinishTime.setDisable(false);
         }
@@ -142,18 +149,25 @@ public class DetailDateController {
         tpstartTime.setValue(date.getStartTime());
         tpfinishTime.setValue(date.getFinishTime());
         tgWeekly.setSelected(date.getWeekly());
+        dpDateEnd.setValue(date.getDateEnd());
         if (this.date.getWeekly()){
             hbWeekDay.setVisible(true);
             hbWeekDay.setManaged(true);
-            lbdpDate.setText("Inicio:");
+            dpDateEnd.setVisible(true);
+            lbdpDate.setVisible(true);
+            lbdpDateEnd.setVisible(true);
+            lbdpDate.setManaged(true);
         }else{
             hbWeekDay.setVisible(false);
             hbWeekDay.setManaged(false);
-            lbdpDate.setText("Fecha:");
+            dpDateEnd.setVisible(false);
+            lbdpDate.setVisible(false);
+            lbdpDateEnd.setVisible(false);
+            lbdpDate.setManaged(false);
         }
     }
     private boolean saveDate (){
-        date.updateDate(cbWeekDay.getValue(), chbCustomer.getValue().getDni(), chbdepartment.getValue().getId(),dpDate.getValue(),tpstartTime.getValue(),tpfinishTime.getValue(),tgWeekly.isSelected());
+        date.updateDate(cbWeekDay.getValue(), chbCustomer.getValue().getDni(), chbdepartment.getValue().getId(),dpDate.getValue(),tpstartTime.getValue(),tpfinishTime.getValue(),tgWeekly.isSelected(),dpDateEnd.getValue());
        if (checkFreeDate()){
            int id = BBDD.saveDate(date);
            if (id!=0){
@@ -166,7 +180,7 @@ public class DetailDateController {
     }
 
     private boolean checkFreeDate() {
-        //TODO:
+        //TODO: Arreglar comprobador de fechas
         ArrayList<Date> datesFound = new ArrayList<>();
         if (date.getWeekly()){
             datesFound = BBDD.checkDaysDates(datesFound,date.getDepartment(),date.getDate(),date.getStartTime(),date.getFinishTime(),date.getId(),date.getWeekDay());
@@ -218,7 +232,6 @@ public class DetailDateController {
                 if (MenuController.isAdmin())
                     if (BBDD.deleteDate(this.date)){
                         if (this.fromPopUp){
-                            //TODO: Cambiar ación al borrar proa Actualizar padre y salir si es Popup
                             dailyViewController.refresh();
                             Node source = (Node)  actionEvent.getSource();
                             Stage stage  = (Stage) source.getScene().getWindow();
@@ -274,11 +287,17 @@ public class DetailDateController {
         if (tgWeekly.isSelected()){
             hbWeekDay.setVisible(true);
             hbWeekDay.setManaged(true);
-            lbdpDate.setText("Inicio:");
+            dpDateEnd.setVisible(true);
+            lbdpDate.setVisible(true);
+            lbdpDateEnd.setVisible(true);
+            lbdpDate.setManaged(true);
         }else{
             hbWeekDay.setVisible(false);
             hbWeekDay.setManaged(false);
-            lbdpDate.setText("Fecha:");
+            dpDateEnd.setVisible(false);
+            lbdpDate.setVisible(false);
+            lbdpDateEnd.setVisible(false);
+            lbdpDate.setManaged(false);
         }
     }
 

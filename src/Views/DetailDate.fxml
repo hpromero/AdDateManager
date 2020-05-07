@@ -30,16 +30,19 @@
                   <JFXToggleButton fx:id="tgWeekly" onAction="#weeklyChange" prefHeight="20.0" prefWidth="160.0" text="Semanal" />
                </children>
             </HBox>
-            <HBox>
-               <children>
-                  <Label fx:id="lbdpDate" prefHeight="26.0" prefWidth="140.0" text="Fecha:" />
-                  <JFXDatePicker fx:id="dpDate" prefHeight="26.0" prefWidth="150.0" />
-               </children>
-            </HBox>
             <HBox fx:id="hbWeekDay">
                <children>
                   <Label prefHeight="26.0" prefWidth="140.0" text="Dia:" />
                   <ComboBox fx:id="cbWeekDay" prefHeight="26.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label prefHeight="26.0" prefWidth="140.0" text="Fecha:" />
+                  <Label fx:id="lbdpDate" prefHeight="26.0" prefWidth="25.0" text="De:" />
+                  <JFXDatePicker fx:id="dpDate" prefHeight="26.0" prefWidth="125.0" />
+                  <Label fx:id="lbdpDateEnd" prefHeight="26.0" prefWidth="25.0" text=" a:" />
+                  <JFXDatePicker fx:id="dpDateEnd" prefHeight="26.0" prefWidth="125.0" />
                </children>
             </HBox>
             <HBox layoutX="30.0" layoutY="92.0">

@@ -14,12 +14,10 @@ public class Department {
     public Department(String name) {
             this.id = 0;
             this.name = name;
-            //TODO: Id auto incremental o name ¿?
     }
     public Department(String name,int id) {
         this.id = id;
         this.name = name;
-        //TODO: Id auto incremental o name ¿?
     }
 
     public int getId() { return id; }
