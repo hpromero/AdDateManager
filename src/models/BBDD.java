@@ -573,8 +573,10 @@ public class BBDD {
                 Date date = datesodb.next();
                 if (date.getDate().isEqual(dateDayToCheck) || weekDay.equals(Date.getWeekDayName(date.getDate().getDayOfWeek().getValue()))) {
                     if ((startDateToCheck.isBefore(date.getFinishTime())&&startDateToCheck.isAfter(date.getStartTime())
-                            || finishDateToCheck.isBefore(date.getFinishTime())&&finishDateToCheck.isAfter(date.getStartTime())
-                            || startDateToCheck.isBefore(date.getStartTime())&&finishDateToCheck.isAfter(date.getFinishTime()))
+                            || (finishDateToCheck.isBefore(date.getFinishTime())&&finishDateToCheck.isAfter(date.getStartTime()))
+                            || (finishDateToCheck.equals(date.getFinishTime()))
+                            || (startDateToCheck.equals(date.getStartTime()))
+                            || (startDateToCheck.isBefore(date.getStartTime())&&finishDateToCheck.isAfter(date.getFinishTime())))
                             && date.getId()!=idToCheck){
                         dateList.add(date);
                     }
@@ -602,8 +604,10 @@ public class BBDD {
             while(datesodb.hasNext()){
                 Date date = datesodb.next();
                 if ((startDateToCheck.isBefore(date.getFinishTime())&&startDateToCheck.isAfter(date.getStartTime())
-                        || finishDateToCheck.isBefore(date.getFinishTime())&&finishDateToCheck.isAfter(date.getStartTime())
-                        || startDateToCheck.isBefore(date.getStartTime())&&finishDateToCheck.isAfter(date.getFinishTime()))
+                        || (finishDateToCheck.isBefore(date.getFinishTime())&&finishDateToCheck.isAfter(date.getStartTime()))
+                        || (finishDateToCheck.equals(date.getFinishTime()))
+                        || (startDateToCheck.equals(date.getStartTime()))
+                        || (startDateToCheck.isBefore(date.getStartTime())&&finishDateToCheck.isAfter(date.getFinishTime())))
                         && date.getId()!=idToCheck){
                     dateList.add(date);
                 }
