@@ -126,7 +126,7 @@ public class MenuController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Section.fxml"));
                 Node node = loader.load();
                 SectionController controller = loader.getController();
-                controller.openList(title,objectList,model);
+                controller.setInitialData(title,objectList,model);
                 mainPane.setContent(node);
             }
         }

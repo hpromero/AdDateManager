@@ -214,9 +214,9 @@ public class DailyViewController {
         space.getStyleClass().add("dailyPane");
         space.setOnMouseClicked(event -> openDateDetail(id));
         if (wkly){
-            space.setStyle("-fx-background-color: #74b9ff;");
-        }else{
             space.setStyle("-fx-background-color: #ffeaa7;");
+        }else{
+            space.setStyle("-fx-background-color: #74b9ff;");
         }
         vbDates.getChildren().add(space);
 

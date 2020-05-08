@@ -172,7 +172,7 @@ public class DetailCustomerController {
                 if (MenuController.isAdmin())
                     if (BBDD.deleteObjectByOid(this.oid,this.customer.getName())){
                         ArrayList<ObjectForList> objectList = BBDD.getCustomerList();
-                        mController.openList("Equipo",objectList,"Customer");
+                        mController.setInitialData("Equipo",objectList,"Customer");
                 }
             }
 

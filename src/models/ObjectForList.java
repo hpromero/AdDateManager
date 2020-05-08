@@ -2,7 +2,7 @@ package models;
 
 import org.neodatis.odb.OID;
 
-public class ObjectForList {
+public class ObjectForList implements Comparable<ObjectForList>{
     private String text1;
     private String text2;
     private String text3;
@@ -71,4 +71,14 @@ public class ObjectForList {
     public int getId() {
         return id;
     }
+
+
+
+    @Override
+    public int compareTo(ObjectForList object) {
+        return text1.compareTo(object.text1);
+    }
+
+
 }
+

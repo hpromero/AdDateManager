@@ -165,7 +165,7 @@ public class DetailUserController {
                 if (MenuController.isAdmin())
                     if (BBDD.deleteObjectByOid(this.oid,this.user.getName())){
                         ArrayList<ObjectForList> objectList = BBDD.getUserList();
-                        mController.openList("Equipo",objectList,"User");
+                        mController.setInitialData("Equipo",objectList,"User");
                 }
             }
         }

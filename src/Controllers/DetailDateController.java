@@ -231,7 +231,7 @@ public class DetailDateController {
                        stage.close();
                    }else{
                        ArrayList<ObjectForList> objectList = BBDD.getDateList();
-                       sectionController.openList("Citas",objectList,"Date");
+                       sectionController.setInitialData("Citas",objectList,"Date");
                    }
                }else{
                    open(date.getId(),this.fromPopUp);
@@ -246,7 +246,7 @@ public class DetailDateController {
                             stage.close();
                         }else{
                             ArrayList<ObjectForList> objectList = BBDD.getDateList();
-                            sectionController.openList("Citas",objectList,"Date");
+                            sectionController.setInitialData("Citas",objectList,"Date");
                         }
 
                 }

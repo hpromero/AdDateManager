@@ -8,12 +8,15 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.VBox;
 import models.ObjectForList;
 import org.neodatis.odb.OID;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 //public class SectionController implements Initializable {
 public class SectionController {
@@ -22,14 +25,30 @@ public class SectionController {
     @FXML private Label lbSubTitle;
     @FXML private Label lbTitle;
     @FXML private Button btnAdd;
+    @FXML private Button btnSearch;
+    @FXML private TextField tfSearch;
     private String model;
+    private String title;
+    private ArrayList<ObjectForList> objectList;
+    private ArrayList<ObjectForList> objectListFilter;
 
 //    @Override
 //    public void initialize(URL location, ResourceBundle resources) { }
 
+    public void setInitialData(String title,ArrayList<ObjectForList> objectList,String model){
+        this.title = title;
+        this.objectList=objectList;
+        this.objectListFilter=objectList;
+        this.model =model;
+        openList();
+    }
+
     public void handleClicks(ActionEvent actionEvent) {
         if (actionEvent.getSource() == btnAdd) {
             openDetail(0,null,this.model,"Nuevo");
+        }
+        if (actionEvent.getSource() == btnSearch) {
+            filter();
         }
     }
 
@@ -58,7 +77,8 @@ public class SectionController {
     }
 
 
-    public void openList(String title,ArrayList<ObjectForList> objectList,String model){
+    public void openList(){
+        Collections.sort(objectListFilter);
         vbContent.getChildren().clear();
         VBox vb = new VBox();
         vb.setPadding(new Insets(30, 0, 0, 0));
@@ -66,13 +86,13 @@ public class SectionController {
         this.model=model;
         lbSubTitle.setText("Listado");
         lbTitle.setText(title);
-        Node[] nodes = new Node[objectList.size()];
+        Node[] nodes = new Node[objectListFilter.size()];
         for (int i = 0; i < nodes.length; i++) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/ItemSection.fxml"));
                 nodes[i] = loader.load();
                 ItemSectionController controller = loader.getController();
-                ObjectForList object = (ObjectForList) objectList.get(i);
+                ObjectForList object = (ObjectForList) objectListFilter.get(i);
                 controller.setData(object);
                 controller.setParentController(this);
                 vbContent.getChildren().add(nodes[i]);
@@ -141,6 +161,22 @@ public class SectionController {
     }
 
 
-
-
+    public void filter() {
+        objectListFilter = new ArrayList<>();
+        if (!tfSearch.getText().isEmpty() && tfSearch.getText()!=null ) {
+            objectListFilter = new ArrayList<>();
+            for (ObjectForList item : objectList) {
+                if (item.getText1().toLowerCase().contains(tfSearch.getText().toLowerCase())
+                        || item.getText2().toLowerCase().contains(tfSearch.getText().toLowerCase())
+                        || item.getText3().toLowerCase().contains(tfSearch.getText().toLowerCase())
+                        || item.getTextBox().toLowerCase().contains(tfSearch.getText().toLowerCase())
+                        || item.getText4().toLowerCase().contains(tfSearch.getText().toLowerCase())) {
+                    objectListFilter.add(item);
+                }
+            }
+        }else{
+            objectListFilter = objectList;
+        }
+        openList();
+    }
 }

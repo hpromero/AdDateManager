@@ -12,7 +12,7 @@ public class ItemSectionController {
     @FXML private Label l_text1;
     @FXML private Label l_text2;
     @FXML private Label l_text3;
- //   @FXML private Label l_text4;
+    @FXML private Label l_text4;
     @FXML private Label l_textBox;
  //   @FXML private String StrIcon;
  //   @FXML private String StrColorItem;
@@ -35,7 +35,7 @@ public class ItemSectionController {
         l_text1.setText(item.getText1());
         l_text2.setText(item.getText2());
         l_text3.setText(item.getText3());
-  //      l_text4.setText(item.getText4());
+        l_text4.setText(item.getText4());
         l_textBox.setText(item.getTextBox());
   //      StrIcon=item.getIcon();
    //     StrColorItem=item.getColorItem();

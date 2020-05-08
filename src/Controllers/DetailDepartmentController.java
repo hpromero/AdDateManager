@@ -120,7 +120,7 @@ public class DetailDepartmentController {
                 if (MenuController.isAdmin())
                     if (BBDD.deleteObjectByOid(this.oid,this.department.getName())){
                         ArrayList<ObjectForList> objectList = BBDD.getDepartmentList();
-                        mController.openList("Equipo",objectList,"Department");
+                        mController.setInitialData("Equipo",objectList,"Department");
                 }
             }
 
