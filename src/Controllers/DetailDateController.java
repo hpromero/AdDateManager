@@ -17,7 +17,10 @@ import models.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import static javafx.scene.control.Alert.AlertType.ERROR;
 
 
 public class DetailDateController {
@@ -160,7 +163,7 @@ public class DetailDateController {
         }else{
             hbWeekDay.setVisible(false);
             hbWeekDay.setManaged(false);
-            dpDateEnd.setVisible(true);//TODO: PONER EN FALSE ----------------------
+            dpDateEnd.setVisible(false);
             lbdpDate.setVisible(false);
             lbdpDateEnd.setVisible(false);
             lbdpDate.setManaged(false);
@@ -171,29 +174,34 @@ public class DetailDateController {
             dpDateEnd.setValue(dpDate.getValue());
             cbWeekDay.setValue(Date.getWeekDayName(dpDate.getValue().getDayOfWeek().getValue()));
         }
-        date.updateDate(cbWeekDay.getValue(), chbCustomer.getValue().getDni(), chbdepartment.getValue().getId(),dpDate.getValue(),tpstartTime.getValue(),tpfinishTime.getValue(),tgWeekly.isSelected(),dpDateEnd.getValue());
-       if (checkFreeDate()){
-           if (date.getStartTime().isBefore(date.getFinishTime()) && (date.getDate().isBefore(date.getDateEnd())||date.getDate().equals(date.getDateEnd()))){
-               int id = BBDD.saveDate(date);
-               if (id!=0) {
-                   open(id, this.fromPopUp);
-                   return true;
+        if (chbCustomer.getValue()!=null && chbdepartment.getValue()!=null) {
+            date.updateDate(cbWeekDay.getValue(), chbCustomer.getValue().getDni(), chbdepartment.getValue().getId(),dpDate.getValue(),tpstartTime.getValue(),tpfinishTime.getValue(),tgWeekly.isSelected(),dpDateEnd.getValue());
 
+           if (checkFreeDate()){
+               if (date.getStartTime().isBefore(date.getFinishTime()) && (date.getDate().isBefore(date.getDateEnd())||date.getDate().equals(date.getDateEnd()))){
+                       int id = BBDD.saveDate(date);
+                       if (id != 0) {
+                           open(id, this.fromPopUp);
+                           return true;
+                       }
+               }else{
+                   lMsg.setText("Las fechas no son válidas");
                }
            }
-       }
-
+        }else{lMsg.setText("Todos los campos son obliagatorios"); }
      return false;
     }
 
     private boolean checkFreeDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         ArrayList<Date> datesFound = BBDD.checkDatesCoincidences(date);
         if (datesFound.size()==0){
             return true;
+        }else if((datesFound.size()==1)){
+            infoBox("Cita dia: "+datesFound.get(0).getDate().format(formatter), "Error", "Existe una cita coincidente", ERROR);
         }else{
-            System.out.println("Existen citas en esa fecha y hora");
 
-            //TODO: DAR AVISO FECHA COINCIDENTE
+            infoBox("Citas: "+datesFound.toString(), "Error", "Existen "+datesFound.size()+" citas coincidentes", ERROR);
         }
         return false;
     }
@@ -294,13 +302,21 @@ public class DetailDateController {
         }else{
             hbWeekDay.setVisible(false);
             hbWeekDay.setManaged(false);
-            dpDateEnd.setVisible(true);//TODO: PONER EN FALSE ----------------------
+            dpDateEnd.setVisible(true);
             lbdpDate.setVisible(false);
             lbdpDateEnd.setVisible(false);
             lbdpDate.setManaged(false);
         }
     }
 
-
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage, Alert.AlertType tipoAlerta)
+    {
+        Alert alert = new Alert(tipoAlerta);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
+        // NONE, INFORMATION, WARNING, CONFIRMATION, ERROR
+    }
 
 }
