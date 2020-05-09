@@ -616,6 +616,47 @@ public class BBDD {
         return dateList;
     }
 
+    public static ArrayList<Date> datesbyCustomer(String customer) {
+        ArrayList<Date> dateList = new ArrayList<>();
+        try {
+            openConection();
+            ICriterion criterio = Where.equal("customer", customer);
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> datesodb = odb.getObjects(query);
+            while(datesodb.hasNext()){
+                Date date = datesodb.next();
+                dateList.add(date);
+
+            }
+
+        } catch(Exception e) {
+            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
+        }finally{
+            closeConection();
+        }
+        return dateList;
+    }
+    public static ArrayList<Date> datesbyDepartment(int department) {
+        ArrayList<Date> dateList = new ArrayList<>();
+        try {
+            openConection();
+            ICriterion criterio = Where.equal("department", department);
+            IQuery query = new CriteriaQuery(Date.class,criterio);
+            Objects<Date> datesodb = odb.getObjects(query);
+            while(datesodb.hasNext()){
+                Date date = datesodb.next();
+                dateList.add(date);
+
+            }
+
+        } catch(Exception e) {
+            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
+        }finally{
+            closeConection();
+        }
+        return dateList;
+    }
+
 
     //--------------------- Others methods ----------------------------
 

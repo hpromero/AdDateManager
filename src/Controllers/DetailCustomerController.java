@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import main.MenuController;
-import models.BBDD;
-import models.ObjectForList;
-import models.Customer;
-import models.User;
+import models.*;
 import org.neodatis.odb.OID;
 
 import java.time.LocalDate;
@@ -17,6 +14,8 @@ import java.util.ArrayList;
 public class DetailCustomerController {
     @FXML private Button btnCustomer;
     @FXML private Button btnCustomer2;
+    @FXML private Button btPDF;
+
     @FXML private Label lTitle;
     @FXML private Label lMsg;
 
@@ -128,6 +127,7 @@ public class DetailCustomerController {
         tfDerivedFrom.setText(customer.getDerivedFrom());
         tfKnowUsFor.setText(customer.getKnowUsFor());
         cbRgpd.setSelected(customer.isRgpd());
+
     }
     private void saveCustomer (){
         if (checkDni()){
@@ -174,6 +174,13 @@ public class DetailCustomerController {
                         ArrayList<ObjectForList> objectList = BBDD.getCustomerList();
                         mController.setInitialData("Equipo",objectList,"Customer");
                 }
+            }
+
+
+        }
+        if (actionEvent.getSource() == btPDF) {
+            if(!this.editmode){
+                CustomerReport.createPdf(customer);
             }
 
 

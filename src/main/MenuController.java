@@ -18,10 +18,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-import models.BBDD;
-import models.Date;
-import models.InitialData;
-import models.ObjectForList;
+import models.*;
 import org.neodatis.odb.OID;
 
 import java.io.IOException;
@@ -106,7 +103,6 @@ public class MenuController implements Initializable {
 
         }
         if(actionEvent.getSource()==btnSettings){
-
         }
         if(actionEvent.getSource()==btnNewDate)
         {

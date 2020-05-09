@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import main.MenuController;
-import models.BBDD;
-import models.Department;
-import models.ObjectForList;
-import models.User;
+import models.*;
 import org.neodatis.odb.OID;
 
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ import java.util.ArrayList;
 public class DetailDepartmentController {
     @FXML private Button btnDepartment;
     @FXML private Button btnDepartment2;
+    @FXML private Button btPDF;
     @FXML private Label lTitle;
     @FXML private Label lMsg;
 
@@ -122,6 +120,11 @@ public class DetailDepartmentController {
                         ArrayList<ObjectForList> objectList = BBDD.getDepartmentList();
                         mController.setInitialData("Equipo",objectList,"Department");
                 }
+            }
+        }
+        if (actionEvent.getSource() == btPDF) {
+            if(!this.editmode){
+                DepartmentReport.createPdf(department);
             }
 
 
