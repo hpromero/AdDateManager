@@ -4,28 +4,21 @@ package main;
 import Controllers.QuickViewController;
 import Controllers.SectionController;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 import models.*;
-import org.neodatis.odb.OID;
-
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 
 public class MenuController implements Initializable {
@@ -44,35 +37,22 @@ public class MenuController implements Initializable {
     @FXML private PasswordField pfPassword;
 
     private static boolean session = false;
-    private static String sessionRol;
-    private static String sessionName;
+    private static String sessionRol = "User";
+    private static String sessionName = "";
+    Path bbddPath = Paths.get("neodatis.bbdd");
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        //Carga incial de datos----------------
-   //  InitialData.loadExampleData();
-/*
-        Date date1 = new Date("Lunes");
-        date1.setId();
-        BBDD.saveDate(null, date1);
-        Date date2 = new Date("MArtes");
-        date2.setId();
-        BBDD.saveDate(null, date2);
-*/
-        //-------------Eliminar----------------
-
-
+ /*
 
         //Bloqueador de loging---------------------
         session = true;
         sessionRol = "Admin";
-        sessionName = "Hector";
-       // openSectionList("../QuickView/QuickWeek.fxml");
         // ---------------Eliminar------------------
 
-
+*/
 
     }
 
@@ -106,10 +86,16 @@ public class MenuController implements Initializable {
         }
         if(actionEvent.getSource()==btnNewDate)
         {
-            try {
-                showsearch();
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            if(confirmationBox("Cargar Datos de prueba","¿Desea cargar nuevos datos de prueba?\nesto borrá toda la base de datos")){
+
+                try {
+                    Files.delete(bbddPath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                InitialData.loadExampleData();
+
             }
         }
     }
@@ -127,10 +113,7 @@ public class MenuController implements Initializable {
             }
         }
         catch(IOException iex)
-        {
-            System.out.println("!Error al cargar Ventana!");
-            //TODO: z Delete Flag
-        }
+        { }
     }
 
     public void openQuickView(){
@@ -145,18 +128,17 @@ public class MenuController implements Initializable {
             }
         }
         catch(IOException iex)
-        {
-            System.out.println("!Error al cargar Ventana!");
-            //TODO: z Delete Flag
-        }
+        { }
     }
 
     public  void sessionStart(){
-
-       if (BBDD.checkUserPasword(tfName.getText(),pfPassword.getText())){
-            session = true;
-            sessionLabel.setText("Usuario Logeado");
-        //    openSectionList("../QuickView/QuickWeek.fxml","",null);
+        User userLoged = BBDD.checkUserPasword(tfName.getText(),pfPassword.getText());
+       if (userLoged!= null){
+           session = true;
+           sessionRol = userLoged.getRol();
+           sessionName = userLoged.getName();
+           sessionLabel.setText("Usuario Logeado");
+           openQuickView();
         }else{
            lMsg.setText("Ususario o contraseña erroneos");
        }
@@ -171,54 +153,15 @@ public class MenuController implements Initializable {
     }
 
 
+    public static boolean confirmationBox(String titleBar, String headerMessage) {
+        Alert alert = new Alert(CONFIRMATION,headerMessage,ButtonType.YES,ButtonType.CANCEL);
+        alert.setTitle(titleBar);
+        alert.showAndWait();
 
-   public void showsearch() throws IOException {
-       final Stage secondStage = new Stage();
-       secondStage.initModality(Modality.APPLICATION_MODAL);
-       secondStage.setResizable(false);
-       Parent root = FXMLLoader.load(getClass().getResource("../Views/SearchUser.fxml"));
-       secondStage.setTitle("Buscar Usuario");
-       Scene scene = new Scene(root,500,600);
-       secondStage.setScene(scene);
-       scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
-       secondStage.show();
-   }
-
-
-
- /*
-
-    public void popup() {
-        Stage secondStage = new Stage();
-        secondStage.setTitle("Popup Example");
-        final Popup popup = new Popup();
-        popup.setX(300);
-        popup.setY(200);
-        popup.getContent().addAll(new Circle(25, 25, 50, Color.AQUAMARINE));
-
-        Button show = new Button("Show");
-        show.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                popup.show(secondStage);
-            }
-        });
-
-        Button hide = new Button("Hide");
-        hide.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                popup.hide();
-            }
-        });
-
-        HBox layout = new HBox(10);
-        layout.setStyle("-fx-background-color: cornsilk; -fx-padding: 10;");
-        layout.getChildren().addAll(show, hide);
-        secondStage.setScene(new Scene(layout));
-        secondStage.show();
+        if (alert.getResult() == ButtonType.YES) {
+            return true;
+        }
+        return false;
     }
-
-  */
 
 }

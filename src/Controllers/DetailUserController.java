@@ -2,10 +2,7 @@ package Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import main.MenuController;
 import models.BBDD;
 import models.ObjectForList;
@@ -24,7 +21,7 @@ public class DetailUserController {
     @FXML private TextField tfPhone;
     @FXML private TextField tfState;
     @FXML private Label lTileUser;
-    @FXML private TextField tfRol;
+    @FXML private ChoiceBox tfRol;
     @FXML private Label lTitlePass;
     @FXML private PasswordField pfPassword;
     @FXML private PasswordField pfNewPassword;
@@ -37,6 +34,11 @@ public class DetailUserController {
     private SectionController mController;
     private OID oid;
 
+    public void initialize(){
+        tfRol.getItems().add("User");
+        tfRol.getItems().add("Admin");
+
+    }
     public void setParentController(SectionController controller) {
         this.mController = controller;
     }
@@ -65,7 +67,7 @@ public class DetailUserController {
             tfEmail.setEditable(false);
             tfPhone.setEditable(false);
             tfDni.setEditable(false);
-            tfRol.setEditable(false);
+            tfRol.setDisable(true);
             tfState.setEditable(false);
             pfPassword.setVisible(false);
             lTitlePass.setVisible(false);
@@ -95,7 +97,7 @@ public class DetailUserController {
             tfEmail.setEditable(true);
             tfPhone.setEditable(true);
             tfDni.setEditable(true);
-            tfRol.setEditable(true);
+            tfRol.setDisable(false);
             tfState.setEditable(true);
             pfPassword.setText(user.getPassword());
             pfNewPassword.setText(user.getPassword());
@@ -110,13 +112,13 @@ public class DetailUserController {
         tfDni.setText(user.getDni());
         tfName.setText(user.getName());
         tfEmail.setText(user.getEmail());
-        tfRol.setText(user.getRol());
+        tfRol.setValue(user.getRol());
         tfPhone.setText(user.getPhone());
         tfState.setText(user.getState());
     }
     private void saveUser (){
         if (checkDni() && checkPasword()){
-            user.updateUser(tfDni.getText(),tfName.getText(),tfEmail.getText(),tfRol.getText(),tfPhone.getText(),tfState.getText(),pfNewPassword.getText());
+            user.updateUser(tfDni.getText(),tfName.getText(),tfEmail.getText(),tfRol.getValue().toString(),tfPhone.getText(),tfState.getText(),pfNewPassword.getText());
             this.oid=BBDD.saveUserByOID(this.oid,user);
             if (this.oid!=null){
                 open(this.oid);

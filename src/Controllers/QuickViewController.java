@@ -74,48 +74,51 @@ public class QuickViewController {
         quickWeekControls.setVisible(true);
         quickWeekControls.setManaged(true);
         this.quickWeeks = QuickWeek.getQuickWeekList(dayOffSet);
-        startDate = quickWeeks.get(0).getStartDate();
-        dpStartDate.setValue(startDate);
-        WeekFields weekFields = WeekFields.ISO.of(Locale.getDefault());
-        int weekNumber = startDate.get(weekFields.weekOfWeekBasedYear());
-        lbWeekNumber.setText("Semana nº "+weekNumber);
 
-        vbContent.getChildren().clear();
-        VBox vb = new VBox();
-        vb.setPadding(new Insets(30, 0, 0, 0));
-        vbContent.getChildren().add(vb);
-        lbSubTitle.setText("Vista semana");
-        lbTitle.setText("Planificador");
+        if (quickWeeks.size()>0) {
 
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/ItemWeek.fxml"));
-        Node header = loader.load();
-        ItemWeekController controller = loader.getController();
-        QuickWeek object = (QuickWeek) quickWeeks.get(0);
-        controller.setHeader(object.getStartDay(),object.getStartDate());
-        controller.setParentController(this);
-        vbContent.getChildren().add(header);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            startDate = quickWeeks.get(0).getStartDate();
+            dpStartDate.setValue(startDate);
+            WeekFields weekFields = WeekFields.ISO.of(Locale.getDefault());
+            int weekNumber = startDate.get(weekFields.weekOfWeekBasedYear());
+            lbWeekNumber.setText("Semana nº " + weekNumber);
 
+            vbContent.getChildren().clear();
+            VBox vb = new VBox();
+            vb.setPadding(new Insets(30, 0, 0, 0));
+            vbContent.getChildren().add(vb);
+            lbSubTitle.setText("Vista semana");
+            lbTitle.setText("Planificador");
 
-        Node[] nodes = new Node[quickWeeks.size()];
-        for (int i = 0; i < nodes.length; i++) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/ItemWeek.fxml"));
-                nodes[i] = loader.load();
+                Node header = loader.load();
                 ItemWeekController controller = loader.getController();
-                QuickWeek object = (QuickWeek) quickWeeks.get(i);
-                controller.setData(object);
+                QuickWeek object = (QuickWeek) quickWeeks.get(0);
+                controller.setHeader(object.getStartDay(), object.getStartDate());
                 controller.setParentController(this);
-                vbContent.getChildren().add(nodes[i]);
-
+                vbContent.getChildren().add(header);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
 
+
+            Node[] nodes = new Node[quickWeeks.size()];
+            for (int i = 0; i < nodes.length; i++) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/ItemWeek.fxml"));
+                    nodes[i] = loader.load();
+                    ItemWeekController controller = loader.getController();
+                    QuickWeek object = (QuickWeek) quickWeeks.get(i);
+                    controller.setData(object);
+                    controller.setParentController(this);
+                    vbContent.getChildren().add(nodes[i]);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 

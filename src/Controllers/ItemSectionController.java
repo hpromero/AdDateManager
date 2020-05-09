@@ -1,8 +1,6 @@
 package Controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import models.ObjectForList;
@@ -14,8 +12,6 @@ public class ItemSectionController {
     @FXML private Label l_text3;
     @FXML private Label l_text4;
     @FXML private Label l_textBox;
- //   @FXML private String StrIcon;
- //   @FXML private String StrColorItem;
     @FXML private VBox vColorBox;
 
     private SectionController mController;

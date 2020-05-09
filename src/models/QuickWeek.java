@@ -4,9 +4,7 @@ import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Iterator;
 
 import static java.time.temporal.ChronoUnit.MINUTES;
@@ -62,16 +60,7 @@ public class QuickWeek {
         return this.firstDay;
     }
 
- /*   private ArrayList<Date> getDatesPerDay (Department department, LocalDate dateDay){
-        ArrayList<Date> dates = new ArrayList<>();
-        dates = BBDD.getDaysDates(dates,department.getId(),dateDay);
-        dates = BBDD.getWeekDayDates(dates,department.getId(),Date.getWeekDayName(dateDay.getDayOfWeek().getValue()));
 
-     return dates;
-    }
-
-
-  */
  private ArrayList<Date> getDatesPerDay (Department department, LocalDate dateDay){
      return  BBDD.getDaysDates2(department.getId(),dateDay,dateDay);
  }
@@ -84,10 +73,8 @@ public class QuickWeek {
             QuickWeek quickWeek = new QuickWeek(item,daysOffset);
             quickWeeks.add(quickWeek);
         }
-        if (quickWeeks.size()!=0){
-            return quickWeeks;
-        }
-    return null;
+
+    return quickWeeks;
     }
 
 
@@ -132,72 +119,6 @@ public class QuickWeek {
         }
         return timeBars;
     }
-
-
-
- /*
-
-
-        public static double[] filterByHours(ArrayList<Date> dates){
-        Iterator<Date> day = dates.iterator();
-        double timeBar1 = MINUTES.between(Settings.getStartday(),Settings.getStartBar2());
-        double timeBar1Total = timeBar1;
-        double timeBar2 = MINUTES.between(Settings.getStartBar2(),Settings.getStartBar3());
-        double timeBar2Total = timeBar2;
-        double timeBar3 = MINUTES.between(Settings.getStartBar3(),Settings.getStartBar4());
-        double timeBar3Total = timeBar3;
-        double timeBar4 = MINUTES.between(Settings.getStartBar4(),Settings.getStartBar5());
-        double timeBar4Total = timeBar4;
-        double timeBar5 = MINUTES.between(Settings.getStartBar5(),Settings.getEndday());
-        double timeBar5Total = timeBar5;
-
-        while (day.hasNext()){
-            Date date = day.next();
-            if (date.getStartTime().isAfter(Settings.getStartday().minusMinutes(1)) && date.getStartTime().isBefore(Settings.getStartBar2())){
-                if (date.getFinishTime().isAfter(Settings.getStartBar2())){
-                    timeBar1 = timeBar1 - MINUTES.between(date.getStartTime(),Settings.getStartBar2());
-                    timeBar2 = timeBar2 -5- MINUTES.between(Settings.getStartBar2(),date.getFinishTime());
-                }else{
-                    timeBar1 = timeBar1 -5- MINUTES.between(date.getStartTime(),date.getFinishTime());
-                }
-            }else if (date.getStartTime().isAfter(Settings.getStartBar2().minusMinutes(1))&&date.getStartTime().isBefore(Settings.getStartBar3())){
-                if (date.getFinishTime().isAfter(Settings.getStartBar3())){
-                    timeBar2 = timeBar2 - MINUTES.between(date.getStartTime(),Settings.getStartBar3());
-                    timeBar3 = timeBar3 -5- MINUTES.between(Settings.getStartBar3(),date.getFinishTime());
-                }else{
-                    timeBar2 = timeBar2 -5- MINUTES.between(date.getStartTime(),date.getFinishTime());
-                }
-            }else if (date.getStartTime().isAfter(Settings.getStartBar3().minusMinutes(1))&&date.getStartTime().isBefore(Settings.getStartBar4())){
-                if (date.getFinishTime().isAfter(Settings.getStartBar4())){
-                    timeBar3 = timeBar3 - MINUTES.between(date.getStartTime(),Settings.getStartBar4());
-                    timeBar4 = timeBar4 -5- MINUTES.between(Settings.getStartBar4(),date.getFinishTime());
-                }else{
-                    timeBar3 = timeBar3 -5- MINUTES.between(date.getStartTime(),date.getFinishTime());
-                }
-            }else if (date.getStartTime().isAfter(Settings.getStartBar4().minusMinutes(1))&&date.getStartTime().isBefore(Settings.getStartBar5())){
-                if (date.getFinishTime().isAfter(Settings.getStartBar5())){
-                    timeBar4 = timeBar4 - MINUTES.between(date.getStartTime(),Settings.getStartBar5());
-                    timeBar5 = timeBar5 -5- MINUTES.between(Settings.getStartBar5(),date.getFinishTime());
-                }else{
-                    timeBar4 = timeBar4 -5- MINUTES.between(date.getStartTime(),date.getFinishTime());
-                }
-            }else if (date.getStartTime().isAfter(Settings.getStartBar5().minusMinutes(1))&&date.getStartTime().isBefore(Settings.getEndday())){
-                timeBar5 = timeBar5 -5- MINUTES.between(date.getStartTime(),date.getFinishTime());
-            }
-        }
-        double[] bars = {
-                (100 - timeBar1 * 100 / timeBar1Total),
-                (100 - timeBar2 * 100 / timeBar2Total),
-                (100 - timeBar3 * 100 / timeBar3Total),
-                (100 - timeBar4 * 100 / timeBar4Total),
-                (100 - timeBar5 * 100 / timeBar5Total)};
-
-        return bars;
-    }
-
-     */
-
-
 
 
 

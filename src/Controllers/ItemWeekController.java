@@ -1,27 +1,17 @@
 package Controllers;
 
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import models.Date;
-import models.ObjectForList;
 import models.QuickWeek;
 import models.Settings;
-import org.neodatis.odb.OID;
-
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ResourceBundle;
-
-import static java.time.temporal.ChronoUnit.MINUTES;
 
 public class ItemWeekController {
     @FXML private Label l_text1;
@@ -83,7 +73,6 @@ public class ItemWeekController {
 
         l_text1.setText(item.getDepartment().getName());
         l_text2.setText(item.getDepartment().getAssignedName());
- //       l_text1.getStyleClass().add("titleDark");
         this.quickWeek = item;
 
         insertBars(day1,this.quickWeek.getDates1());
@@ -94,11 +83,9 @@ public class ItemWeekController {
         insertBars(day6,this.quickWeek.getDates6());
         insertBars(day7,this.quickWeek.getDates7());
 
- //       vColorBox.setStyle("-fx-background-color: black");
     }
 
     public void viewDetail() {
- //           mController.openDetail(oid,model,l_text1.getText());
     }
 
 

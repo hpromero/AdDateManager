@@ -10,17 +10,11 @@ import org.neodatis.odb.core.query.criteria.ICriterion;
 import org.neodatis.odb.core.query.criteria.Where;
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 import org.neodatis.odb.impl.core.query.values.ValuesCriteriaQuery;
-
-
-import javax.security.auth.callback.ConfirmationCallback;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static javafx.scene.control.Alert.AlertType.*;
-import static sun.rmi.transport.TransportConstants.Return;
-
 public class BBDD {
     static ODB odb = null;
 
@@ -39,6 +33,9 @@ public class BBDD {
     }
 
     //------------------------------- General Methods------------------------------------
+
+
+
 
     public static Object  getObjectByOid(OID oid){
         try{
@@ -173,7 +170,6 @@ public class BBDD {
             ICriterion criterio = Where.equal("dni", id);
             IQuery query = new CriteriaQuery(User.class,criterio);
             Objects<User> userodb = odb.getObjects(query);
-        //    return (User) userodb.getFirst();
             if (userodb.size()>0){
                 return (User) userodb.getFirst();
             }
@@ -185,7 +181,7 @@ public class BBDD {
         }
         return null;
     }
-    public static boolean checkUserPasword(String name, String password) {
+    public static User checkUserPasword(String name, String password) {
         try {
             openConection();
             ICriterion criterio = Where.equal("name",name);
@@ -193,16 +189,17 @@ public class BBDD {
             Objects<User> users = odb.getObjects(query);
             if (users.size()>0){
                 User user = (User) users.getFirst();
-                return user.checkPasword(password);
+                if (user.checkPasword(password)){
+                    return user;
+                }
             }
         } catch(Exception e) {
             infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
         }finally {
             closeConection();
         }
-        return false;
+        return null;
     }
-
 
 
 // --------------------- Customers methods -------------------------------
@@ -343,24 +340,6 @@ public class BBDD {
         return departmentList;
     }
 
-    public static boolean checkDepartmentDni(String id) {
-        try{
-            openConection();
-            ICriterion criterio = Where.equal("id", id);
-            //TODO: comprobar ¿id?
-            IQuery query = new CriteriaQuery(Department.class,criterio);
-            Objects<Department> departmentodb = odb.getObjects(query);
-            if (departmentodb.size()==0){
-                return true;
-            }
-        }catch(Exception e){
-            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
-        }finally{
-            closeConection();
-        }
-        return false;
-
-    }
 
     public static Department getDepartmentById(int id) {
         try{
@@ -532,66 +511,6 @@ public class BBDD {
     }
 
 
-    public static ArrayList<Date> checkDaysDates(ArrayList<Date> dateList, int department, LocalDate dateDayToCheck, LocalTime startDateToCheck, LocalTime finishDateToCheck,int idToCheck,String weekDay) {
-        try {
-            openConection();
-            ICriterion criterio = Where.and()
-                    .add(Where.equal("department", department))
-                    .add(Where.equal("weekly", false));
-            //TODO: Añadir filtro citas pasadas
-            IQuery query = new CriteriaQuery(Date.class,criterio);
-            Objects<Date> datesodb = odb.getObjects(query);
-            while(datesodb.hasNext()){
-                Date date = datesodb.next();
-                if (date.getDate().isEqual(dateDayToCheck) || weekDay.equals(Date.getWeekDayName(date.getDate().getDayOfWeek().getValue()))) {
-                    if ((startDateToCheck.isBefore(date.getFinishTime())&&startDateToCheck.isAfter(date.getStartTime())
-                            || (finishDateToCheck.isBefore(date.getFinishTime())&&finishDateToCheck.isAfter(date.getStartTime()))
-                            || (finishDateToCheck.equals(date.getFinishTime()))
-                            || (startDateToCheck.equals(date.getStartTime()))
-                            || (startDateToCheck.isBefore(date.getStartTime())&&finishDateToCheck.isAfter(date.getFinishTime())))
-                            && date.getId()!=idToCheck){
-                        dateList.add(date);
-                    }
-
-                }
-            }
-
-        } catch(Exception e) {
-            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
-        }finally{
-            closeConection();
-        }
-        return dateList;
-    }
-
-    public static ArrayList<Date> checkWeekDayDates(ArrayList<Date> dateList,int department, String weekDay,LocalTime startDateToCheck, LocalTime finishDateToCheck,int idToCheck) {
-        try {
-            openConection();
-            ICriterion criterio = Where.and()
-                    .add(Where.equal("department", department))
-                    .add(Where.equal("weekDay", weekDay))
-                    .add(Where.equal("weekly", true));
-            IQuery query = new CriteriaQuery(Date.class,criterio);
-            Objects<Date> datesodb = odb.getObjects(query);
-            while(datesodb.hasNext()){
-                Date date = datesodb.next();
-                if ((startDateToCheck.isBefore(date.getFinishTime())&&startDateToCheck.isAfter(date.getStartTime())
-                        || (finishDateToCheck.isBefore(date.getFinishTime())&&finishDateToCheck.isAfter(date.getStartTime()))
-                        || (finishDateToCheck.equals(date.getFinishTime()))
-                        || (startDateToCheck.equals(date.getStartTime()))
-                        || (startDateToCheck.isBefore(date.getStartTime())&&finishDateToCheck.isAfter(date.getFinishTime())))
-                        && date.getId()!=idToCheck){
-                    dateList.add(date);
-                }
-            }
-
-        } catch(Exception e) {
-            infoBox(e.toString(),"Error","Error de conexión a Base de datos",ERROR);
-        }finally{
-            closeConection();
-        }
-        return dateList;
-    }
     public static ArrayList<Date> checkDatesCoincidences(Date dateToCheck) {
         ArrayList<Date> dateList = new ArrayList<>();
         try {
@@ -674,8 +593,6 @@ public class BBDD {
     public static boolean confirmationBox(String titleBar, String headerMessage) {
         Alert alert = new Alert(CONFIRMATION,headerMessage,ButtonType.YES,ButtonType.CANCEL);
         alert.setTitle(titleBar);
-   //     alert.setHeaderText(headerMessage);
-    //    alert.setContentText(infoMessage);
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {

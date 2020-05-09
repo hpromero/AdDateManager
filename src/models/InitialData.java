@@ -38,11 +38,11 @@ public class InitialData {
 
     private static void loadUsers(){
 
-        odb.store(new User("91032479C", "Julieta Hornos Ladrada", "blorem@blorem.eu", "User", "7821635976", "Activo", "1234"));
-        odb.store(new User("86144345F", "Aroa Prego Escorcia", "blorem@blorem.es", "User", "6464676362", "Activo", "1234"));
-        odb.store(new User("86225616L", "Zarina Inda Icedo", "blorem@blorem.eu", "User", "6979584974", "Activo", "1234"));
-        odb.store(new User("48840097B", "René Zunzunegui Fandiño", "blorem@blorem.gov", "User", "6520334566", "Activo", "1234"));
-        odb.store(new User("29732088B", "Tasiana Carragal Pison", "blorem@blorem.es", "User", "7518093353", "Activo", "1234"));
+        odb.store(new User("91032479C", "Hector", "blorem@blorem.eu", "Admin", "7821635976", "Activo", "1234"));
+        odb.store(new User("86144345F", "Rocio", "blorem@blorem.es", "User", "6464676362", "Activo", "1234"));
+        odb.store(new User("86225616L", "Gala", "blorem@blorem.eu", "User", "6979584974", "Activo", "1234"));
+        odb.store(new User("48840097B", "Laura", "blorem@blorem.gov", "User", "6520334566", "Activo", "1234"));
+        odb.store(new User("29732088B", "Gema", "blorem@blorem.es", "User", "7518093353", "Activo", "1234"));
 
 
     }
@@ -64,70 +64,163 @@ public class InitialData {
         odb.store(new Customer("49369916W", "Karime Monagray Santo", LocalDate.parse("02-12-2014", formatter), "Femenino", "Uriel Polentinos Güell", "8781270307", "blorem@blorem.org", "Stella Ergueta Vazquez", "7533167546", true, "Tarragona", "17055", "Lorem ipsum dolor SA", "Maiores ducimus amet nam vel rerum reiciendis, vel magnam fugiat natus, autem inventore doloremque ex, quas accusantium ratione quasi dignissimos dolor sapiente dolorem iusto voluptatum autem aliquid?"));
         odb.store(new Customer("25539896Y", "Yamila Parrondo Fraile", LocalDate.parse("22-04-2016", formatter), "Femenino", "Zahid Sampil Izar", "6557870060", "blorem@blorem.com", "Kerim Diaz Ponte", "6879179670", true, "Almería", "28079", "Lorem ipsum CB", "Molestias suscipit hic doloremque enim perspiciatis fugiat magni quo, error sunt iste quisquam animi voluptate, ea exercitationem distinctio, veniam molestiae doloremque fugit?"));
         odb.store(new Customer("69195871A", "Hollman Cal Afaba", LocalDate.parse("20-03-2013", formatter), "Masculino", "Williams Santos San", "6351242187", "blorem@blorem.com", "Víctor Ruisuarez Usategui", "8443718456", true, "Burgos", "45523", "Lorem ipsum dolor SA", "Impedit fuga voluptatem?"));
-        odb.store(new Customer("1391798E", "Devyaní Pose Perana", LocalDate.parse("27-12-2017", formatter), "Masculino", "Silvano Padriña Zaldo", "7318259017", "blorem@blorem.net", "Farid Cubas Monzon", "7154597822", true, "Cáceres", "19271", "Lorem ipsum CB", "Hic voluptates asperiores quam, facere possimus atque laborum nihil iusto dolorum eos et, ea id repellat minus veniam, earum doloremque molestias doloribus iste explicabo quae velit quam nisi voluptatibus."));
-        odb.store(new Customer("34371615R", "Rodimiro Ramila Bellogin", LocalDate.parse("11-09-2019", formatter), "Masculino", "Víctor Roncesvalles Herquinigo", "8758824850", "blorem@blorem.es", "Yatzel Angeriz Cea", "6713103215", true, "Almería", "30499", "Lorem ipsum SA", "Dicta corporis voluptas, nemo quisquam incidunt, blanditiis ex quae possimus pariatur explicabo laboriosam?"));
-        odb.store(new Customer("96188053Y", "Leila Lunar Tejo", LocalDate.parse("10-11-2017", formatter), "Femenino", "Vladimir Ballin Pumares", "7570170267", "blorem@blorem.eu", "Yosaris Zurica Aguinagalde", "8281290850", true, "Burgos", "11190", "Lorem ipsum SLU", "Quidem doloremque tenetur quos qui distinctio in blanditiis amet nemo quae fuga."));
-        odb.store(new Customer("74534188C", "Arlette Hudobro Meca", LocalDate.parse("12-08-2013", formatter), "Masculino", "Williams Canseco Herquinigo", "6161091180", "blorem@blorem.gov", "Antares Septiem Cervera", "7468249215", true, "Valladolid", "12319", "Lorem ipsum dolor SLU", "Quisquam eligendi quam unde harum odio aliquam?"));
-        odb.store(new Customer("18235747J", "Vanina Cervera Galindez", LocalDate.parse("16-02-2018", formatter), "Femenino", "Benjamín Pardelas Guaras", "6670814985", "blorem@blorem.gov", "Agustina Sauto Gondorillas", "7468677378", true, "Zaragoza", "6453", "Lorem ipsum SL", "Placeat totam obcaecati, consequatur asperiores maiores sunt natus error veniam nulla."));
-        odb.store(new Customer("91621488E", "Nicolette Norato Zaldivar", LocalDate.parse("18-09-2012", formatter), "Femenino", "Renato Pelon Lebrato", "6140066421", "blorem@blorem.com", "Emilio Notes Landeta", "8866836262", true, "Segovia", "8791", "Lorem ipsum SL", "Adipisci est odio ab explicabo earum distinctio aspernatur excepturi qui, nulla assumenda illo, quasi odit nostrum, non vero aliquam temporibus a ipsum, ea tempore vel eveniet deserunt totam adipisci ipsa voluptatem."));
-        odb.store(new Customer("42645384A", "Eugenio Corel Viesca", LocalDate.parse("04-09-2015", formatter), "Femenino", "Vidalia Fombona Talavera", "8979206450", "blorem@blorem.gov", "Verania Pazo Heces", "8737473050", true, "Ceuta", "43972", "Lorem ipsum dolor SLU", "Aliquid labore maxime, consequuntur iusto non veritatis sint porro rerum ad, officia exercitationem esse temporibus tenetur?"));
-        odb.store(new Customer("42438860L", "Marcial Barrionuevo Tellez", LocalDate.parse("22-09-2016", formatter), "Masculino", "Augusto Zaldivar Zuri", "7923001123", "blorem@blorem.gov", "Tefacs Hordas Escudero", "8261533542", true, "Lugo", "19581", "Lorem ipsum CB", "Optio repudiandae aspernatur reiciendis eos omnis blanditiis deleniti, nihil repellendus saepe doloribus?"));
-        odb.store(new Customer("7836765K", "Sonia Morras Portochao", LocalDate.parse("03-04-2018", formatter), "Femenino", "Rigel Paratorrecilla Cagide", "8326601978", "blorem@blorem.org", "Lucio Moneda Varela", "7219754985", true, "Segovia", "45910", "Lorem ipsum dolor SA", "Quod exercitationem veniam, voluptates deleniti delectus assumenda suscipit, suscipit perspiciatis qui maxime eos ea molestias voluptas quia debitis deleniti, explicabo tenetur nemo ipsa quo voluptates omnis alias."));
+        odb.store(new Customer("41391798E", "Devyaní Pose Perana", LocalDate.parse("27-12-2017", formatter), "Masculino", "Silvano Padriña Zaldo", "7318259017", "blorem@blorem.net", "Farid Cubas Monzon", "7154597822", true, "Cáceres", "19271", "Lorem ipsum CB", "Hic voluptates asperiores quam, facere possimus atque laborum nihil iusto dolorum eos et, ea id repellat minus veniam, earum doloremque molestias doloribus iste explicabo quae velit quam nisi voluptatibus."));
 
 
     }
 
     private static void loadDepartments() {
 
-        odb.store(new Department("Logopedia",1));
-        odb.store(new Department( "Psicología",2));
-        odb.store(new Department("Fisioterapia",3));
+        odb.store(new Department(1,"Logopedia","48840097B","Laura","29732088B","Gema"));
+        odb.store(new Department( 2,"Psicología","29732088B","Gema","48840097B","Laura"));
+        odb.store(new Department(3,"Fisioterapia","86225616L","Gala","86144345F","Rocio"));
     }
 
     private static void loadDates() {
-        /*
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate lt = LocalDate.parse("31-12-2018", formatter);
-        */
 
-        saveDates(new Date("Lunes", "20372347M", "Naylu Sorriva Mantilla", 3, "Fisioterapia", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
-        saveDates(new Date("Martes", "20372347M", "Naylu Sorriva Mantilla", 3, "Fisioterapia", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
-        saveDates(new Date("Miércoles", "20372347M", "Naylu Sorriva Mantilla", 3, "Fisioterapia", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
-        saveDates(new Date("Jueves", "20372347M", "Naylu Sorriva Mantilla", 3, "Fisioterapia", LocalDate.now(), LocalTime.of(17, 00, 00), LocalTime.of(17, 55, 00), true));
-        saveDates(new Date("Jueves", "20372347M", "Naylu Sorriva Mantilla", 3, "Fisioterapia", LocalDate.now(), LocalTime.of(18, 00, 00), LocalTime.of(18, 55, 00), true));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "61249991W", "Sabas Largacha Rano", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "49369916W", "Karime Monagray Santo", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "52765677C", "Sebastián Arrese Errasti", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "25539896Y", "Yamila Parrondo Fraile",1, "Logopedia", LocalDate.now().plusDays(4), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "69195871A", "Hollman Cal Afaba", 1, "Logopedia", LocalDate.now().plusDays(5), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "41391798E", "Devyaní Pose Perana", 1, "Logopedia", LocalDate.now().plusDays(6), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
 
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(8, 00, 00), LocalTime.of(8, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(1), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(3), LocalTime.of(15, 00, 00), LocalTime.of(18, 00, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 2, "Psicología", LocalDate.now().plusDays(1), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "61249991W", "Sabas Largacha Rano", 2, "Psicología", LocalDate.now().plusDays(2), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "49369916W", "Karime Monagray Santo", 2, "Psicología", LocalDate.now().plusDays(3), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "52765677C", "Sebastián Arrese Errasti", 2, "Psicología", LocalDate.now().plusDays(4), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "25539896Y", "Yamila Parrondo Fraile",2, "Psicología", LocalDate.now().plusDays(5), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "69195871A", "Hollman Cal Afaba", 2, "Psicología", LocalDate.now().plusDays(6), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "41391798E", "Devyaní Pose Perana", 2, "Psicología", LocalDate.now().plusDays(7), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
 
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(0), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(2), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), false));
+        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 3, "Fisioterapia", LocalDate.now().plusDays(3), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "61249991W", "Sabas Largacha Rano", 3, "Fisioterapia", LocalDate.now().plusDays(4), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "49369916W", "Karime Monagray Santo", 3, "Fisioterapia", LocalDate.now().plusDays(5), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "52765677C", "Sebastián Arrese Errasti", 3, "Fisioterapia", LocalDate.now().plusDays(6), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "25539896Y", "Yamila Parrondo Fraile",3, "Fisioterapia", LocalDate.now().plusDays(7), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "69195871A", "Hollman Cal Afaba", 3, "Fisioterapia", LocalDate.now().plusDays(8), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
+        saveDates(new Date("", "41391798E", "Devyaní Pose Perana", 3, "Fisioterapia", LocalDate.now().plusDays(9), LocalTime.of(13, 00, 00), LocalTime.of(13, 55, 00), false));
 
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(16, 20, 00), LocalTime.of(16, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(16, 00, 00), LocalTime.of(16, 20, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(13, 15, 00), LocalTime.of(14, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(9, 00, 00), LocalTime.of(11, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 1, "Logopedia", LocalDate.now().plusDays(-1), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), false));
+        saveDates(new Date("Lunes", "20372347M", "Naylu Sorriva Mantilla",3, "Fisioterapia", LocalDate.now(), LocalTime.of(8, 00, 00), LocalTime.of(8, 55, 00), true));
+        saveDates(new Date("Lunes", "70472205K", "Lana Juan Sesmilo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Lunes", "52765677C", "Sebastián Arrese Errasti",3, "Fisioterapia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Lunes", "12770262H", "Saulo Oraa Miranes",3, "Fisioterapia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Lunes", "91896855X", "Yamileth Ferrer Ledo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
+        saveDates(new Date("Lunes", "61249991W", "Sabas Largacha Rano",3, "Fisioterapia", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Lunes", "70367303E", "Omar Bouceda Escudero",3, "Fisioterapia", LocalDate.now(), LocalTime.of(17, 00, 00), LocalTime.of(17, 55, 00), true));
+        saveDates(new Date("Lunes", "83509748Z", "Karla Tolosa Atauri",3, "Fisioterapia", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Lunes", "92352958T", "Electra Toro Echaitia",3, "Fisioterapia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Lunes", "49369916W", "Karime Monagray Santo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), true));
+        saveDates(new Date("Martes", "25539896Y", "Yamila Parrondo Fraile",3, "Fisioterapia", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Martes", "69195871A", "Hollman Cal Afaba",3, "Fisioterapia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Martes", "20372347M", "Naylu Sorriva Mantilla",3, "Fisioterapia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Martes", "70472205K", "Lana Juan Sesmilo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(15, 00, 00), LocalTime.of(15, 55, 00), true));
+        saveDates(new Date("Martes", "52765677C", "Sebastián Arrese Errasti",3, "Fisioterapia", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Martes", "12770262H", "Saulo Oraa Miranes",3, "Fisioterapia", LocalDate.now(), LocalTime.of(18, 00, 00), LocalTime.of(18, 55, 00), true));
+        saveDates(new Date("Martes", "91896855X", "Yamileth Ferrer Ledo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Martes", "61249991W", "Sabas Largacha Rano",3, "Fisioterapia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Martes", "70367303E", "Omar Bouceda Escudero",3, "Fisioterapia", LocalDate.now(), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), true));
+        saveDates(new Date("Miércoles", "83509748Z", "Karla Tolosa Atauri",3, "Fisioterapia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Miércoles", "92352958T", "Electra Toro Echaitia",3, "Fisioterapia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Miércoles", "49369916W", "Karime Monagray Santo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), true));
+        saveDates(new Date("Miércoles", "25539896Y", "Yamila Parrondo Fraile",3, "Fisioterapia", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Miércoles", "69195871A", "Hollman Cal Afaba",3, "Fisioterapia", LocalDate.now(), LocalTime.of(18, 00, 00), LocalTime.of(18, 55, 00), true));
+        saveDates(new Date("Miércoles", "20372347M", "Naylu Sorriva Mantilla",3, "Fisioterapia", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Miércoles", "70472205K", "Lana Juan Sesmilo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Jueves", "52765677C", "Sebastián Arrese Errasti",3, "Fisioterapia", LocalDate.now(), LocalTime.of(8, 00, 00), LocalTime.of(8, 55, 00), true));
+        saveDates(new Date("Jueves", "12770262H", "Saulo Oraa Miranes",3, "Fisioterapia", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Jueves", "91896855X", "Yamileth Ferrer Ledo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Jueves", "61249991W", "Sabas Largacha Rano",3, "Fisioterapia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Jueves", "83509748Z", "Karla Tolosa Atauri",3, "Fisioterapia", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
+        saveDates(new Date("Jueves", "92352958T", "Electra Toro Echaitia",3, "Fisioterapia", LocalDate.now(), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), true));
+        saveDates(new Date("Jueves", "49369916W", "Karime Monagray Santo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(17, 00, 00), LocalTime.of(17, 55, 00), true));
+        saveDates(new Date("Jueves", "25539896Y", "Yamila Parrondo Fraile",3, "Fisioterapia", LocalDate.now(), LocalTime.of(18, 00, 00), LocalTime.of(18, 55, 00), true));
+        saveDates(new Date("Jueves", "69195871A", "Hollman Cal Afaba",3, "Fisioterapia", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Jueves", "20372347M", "Naylu Sorriva Mantilla",3, "Fisioterapia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Viernes", "70472205K", "Lana Juan Sesmilo",3, "Fisioterapia", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Viernes", "52765677C", "Sebastián Arrese Errasti",3, "Fisioterapia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Viernes", "12770262H", "Saulo Oraa Miranes",3, "Fisioterapia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Viernes", "61249991W", "Sabas Largacha Rano",3, "Fisioterapia", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Jueves", "20372347M", "Naylu Sorriva Mantilla",1, "Logopedia", LocalDate.now(), LocalTime.of(8, 00, 00), LocalTime.of(8, 55, 00), true));
+        saveDates(new Date("Jueves", "70472205K", "Lana Juan Sesmilo",1, "Logopedia", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Jueves", "52765677C", "Sebastián Arrese Errasti",1, "Logopedia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Jueves", "12770262H", "Saulo Oraa Miranes",1, "Logopedia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Jueves", "91896855X", "Yamileth Ferrer Ledo",1, "Logopedia", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
+        saveDates(new Date("Jueves", "61249991W", "Sabas Largacha Rano",1, "Logopedia", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Jueves", "70367303E", "Omar Bouceda Escudero",1, "Logopedia", LocalDate.now(), LocalTime.of(17, 00, 00), LocalTime.of(17, 55, 00), true));
+        saveDates(new Date("Jueves", "83509748Z", "Karla Tolosa Atauri",1, "Logopedia", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Jueves", "92352958T", "Electra Toro Echaitia",1, "Logopedia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Jueves", "49369916W", "Karime Monagray Santo",1, "Logopedia", LocalDate.now(), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), true));
 
+        saveDates(new Date("Viernes", "25539896Y", "Yamila Parrondo Fraile",1, "Logopedia", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Viernes", "69195871A", "Hollman Cal Afaba",1, "Logopedia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Viernes", "20372347M", "Naylu Sorriva Mantilla",1, "Logopedia", LocalDate.now(), LocalTime.of(8, 00, 00), LocalTime.of(8, 55, 00), true));
+        saveDates(new Date("Viernes", "70472205K", "Lana Juan Sesmilo",1, "Logopedia", LocalDate.now(), LocalTime.of(15, 00, 00), LocalTime.of(15, 55, 00), true));
+        saveDates(new Date("Viernes", "52765677C", "Sebastián Arrese Errasti",1, "Logopedia", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Viernes", "12770262H", "Saulo Oraa Miranes",1, "Logopedia", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(17, 55, 00), true));
+        saveDates(new Date("Viernes", "91896855X", "Yamileth Ferrer Ledo",1, "Logopedia", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Viernes", "61249991W", "Sabas Largacha Rano",1, "Logopedia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Viernes", "70367303E", "Omar Bouceda Escudero",1, "Logopedia", LocalDate.now(), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), true));
 
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 2, "Psicología", LocalDate.now().plusDays(0), LocalTime.of(13, 00, 00), LocalTime.of(14, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 2, "Psicología", LocalDate.now().plusDays(0), LocalTime.of(9, 00, 00), LocalTime.of(11, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 2, "Psicología", LocalDate.now().plusDays(0), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 2, "Psicología", LocalDate.now().plusDays(1), LocalTime.of(16, 00, 00), LocalTime.of(17, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 2, "Psicología", LocalDate.now().plusDays(1), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), false));
-        saveDates(new Date("", "20372347M", "Naylu Sorriva Mantilla", 2, "Psicología", LocalDate.now().plusDays(1), LocalTime.of(18, 00, 00), LocalTime.of(21, 55, 00), false));
+        saveDates(new Date("Lunes", "83509748Z", "Karla Tolosa Atauri",1, "Logopedia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Lunes", "92352958T", "Electra Toro Echaitia",1, "Logopedia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Lunes", "49369916W", "Karime Monagray Santo",1, "Logopedia", LocalDate.now(), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), true));
+        saveDates(new Date("Lunes", "25539896Y", "Yamila Parrondo Fraile",1, "Logopedia", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Lunes", "69195871A", "Hollman Cal Afaba",1, "Logopedia", LocalDate.now(), LocalTime.of(18, 00, 00), LocalTime.of(18, 55, 00), true));
+        saveDates(new Date("Lunes", "20372347M", "Naylu Sorriva Mantilla",1, "Logopedia", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Lunes", "70472205K", "Lana Juan Sesmilo",1, "Logopedia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Miércoles", "52765677C", "Sebastián Arrese Errasti",1, "Logopedia", LocalDate.now(), LocalTime.of(8, 00, 00), LocalTime.of(8, 55, 00), true));
+        saveDates(new Date("Miércoles", "12770262H", "Saulo Oraa Miranes",1, "Logopedia", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Miércoles", "91896855X", "Yamileth Ferrer Ledo",1, "Logopedia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Miércoles", "61249991W", "Sabas Largacha Rano",1, "Logopedia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Miércoles", "70367303E", "Omar Bouceda Escudero",1, "Logopedia", LocalDate.now(), LocalTime.of(15, 00, 00), LocalTime.of(15, 55, 00), true));
+        saveDates(new Date("Miércoles", "83509748Z", "Karla Tolosa Atauri",1, "Logopedia", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
+        saveDates(new Date("Miércoles", "92352958T", "Electra Toro Echaitia",1, "Logopedia", LocalDate.now(), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), true));
+        saveDates(new Date("Miércoles", "49369916W", "Karime Monagray Santo",1, "Logopedia", LocalDate.now(), LocalTime.of(17, 00, 00), LocalTime.of(17, 55, 00), true));
+        saveDates(new Date("Miércoles", "25539896Y", "Yamila Parrondo Fraile",1, "Logopedia", LocalDate.now(), LocalTime.of(18, 00, 00), LocalTime.of(18, 55, 00), true));
+        saveDates(new Date("Miércoles", "69195871A", "Hollman Cal Afaba",1, "Logopedia", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Miércoles", "20372347M", "Naylu Sorriva Mantilla",1, "Logopedia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Martes", "70472205K", "Lana Juan Sesmilo",1, "Logopedia", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Martes", "52765677C", "Sebastián Arrese Errasti",1, "Logopedia", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Martes", "12770262H", "Saulo Oraa Miranes",1, "Logopedia", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Martes", "91896855X", "Yamileth Ferrer Ledo",1, "Logopedia", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Martes", "61249991W", "Sabas Largacha Rano",1, "Logopedia", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Lunes", "52765677C", "Sebastián Arrese Errasti",2, "Psicología", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Lunes", "12770262H", "Saulo Oraa Miranes",2, "Psicología", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Lunes", "91896855X", "Yamileth Ferrer Ledo",2, "Psicología", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
+        saveDates(new Date("Lunes", "61249991W", "Sabas Largacha Rano",2, "Psicología", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Lunes", "70367303E", "Omar Bouceda Escudero",2, "Psicología", LocalDate.now(), LocalTime.of(17, 00, 00), LocalTime.of(17, 55, 00), true));
+        saveDates(new Date("Lunes", "83509748Z", "Karla Tolosa Atauri",2, "Psicología", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Lunes", "92352958T", "Electra Toro Echaitia",2, "Psicología", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Lunes", "49369916W", "Karime Monagray Santo",2, "Psicología", LocalDate.now(), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), true));
+        saveDates(new Date("Martes", "25539896Y", "Yamila Parrondo Fraile",2, "Psicología", LocalDate.now(), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), true));
+        saveDates(new Date("Martes", "69195871A", "Hollman Cal Afaba",2, "Psicología", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Martes", "20372347M", "Naylu Sorriva Mantilla",2, "Psicología", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Martes", "70472205K", "Lana Juan Sesmilo",2, "Psicología", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
+        saveDates(new Date("Martes", "52765677C", "Sebastián Arrese Errasti",2, "Psicología", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
+        saveDates(new Date("Martes", "12770262H", "Saulo Oraa Miranes",2, "Psicología", LocalDate.now(), LocalTime.of(15, 00, 00), LocalTime.of(15, 55, 00), true));
+        saveDates(new Date("Martes", "91896855X", "Yamileth Ferrer Ledo",2, "Psicología", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Martes", "61249991W", "Sabas Largacha Rano",2, "Psicología", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Martes", "70367303E", "Omar Bouceda Escudero",2, "Psicología", LocalDate.now(), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), true));
+        saveDates(new Date("Miércoles", "83509748Z", "Karla Tolosa Atauri",2, "Psicología", LocalDate.now(), LocalTime.of(17, 00, 00), LocalTime.of(17, 55, 00), true));
+        saveDates(new Date("Miércoles", "92352958T", "Electra Toro Echaitia",2, "Psicología", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Miércoles", "49369916W", "Karime Monagray Santo",2, "Psicología", LocalDate.now(), LocalTime.of(21, 00, 00), LocalTime.of(21, 55, 00), true));
+        saveDates(new Date("Miércoles", "25539896Y", "Yamila Parrondo Fraile",2, "Psicología", LocalDate.now(), LocalTime.of(22, 00, 00), LocalTime.of(22, 55, 00), true));
+        saveDates(new Date("Miércoles", "69195871A", "Hollman Cal Afaba",2, "Psicología", LocalDate.now(), LocalTime.of(18, 00, 00), LocalTime.of(18, 55, 00), true));
+        saveDates(new Date("Miércoles", "20372347M", "Naylu Sorriva Mantilla",2, "Psicología", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Miércoles", "70472205K", "Lana Juan Sesmilo",2, "Psicología", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Jueves", "61249991W", "Sabas Largacha Rano",2, "Psicología", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Jueves", "83509748Z", "Karla Tolosa Atauri",2, "Psicología", LocalDate.now(), LocalTime.of(16, 00, 00), LocalTime.of(16, 55, 00), true));
+        saveDates(new Date("Jueves", "92352958T", "Electra Toro Echaitia",2, "Psicología", LocalDate.now(), LocalTime.of(12, 00, 00), LocalTime.of(12, 55, 00), true));
+        saveDates(new Date("Jueves", "49369916W", "Karime Monagray Santo",2, "Psicología", LocalDate.now(), LocalTime.of(17, 00, 00), LocalTime.of(17, 55, 00), true));
+        saveDates(new Date("Jueves", "25539896Y", "Yamila Parrondo Fraile",2, "Psicología", LocalDate.now(), LocalTime.of(18, 00, 00), LocalTime.of(18, 55, 00), true));
+        saveDates(new Date("Jueves", "69195871A", "Hollman Cal Afaba",2, "Psicología", LocalDate.now(), LocalTime.of(19, 00, 00), LocalTime.of(19, 55, 00), true));
+        saveDates(new Date("Jueves", "20372347M", "Naylu Sorriva Mantilla",2, "Psicología", LocalDate.now(), LocalTime.of(20, 00, 00), LocalTime.of(20, 55, 00), true));
+        saveDates(new Date("Viernes", "70472205K", "Lana Juan Sesmilo",2, "Psicología", LocalDate.now(), LocalTime.of(9, 00, 00), LocalTime.of(9, 55, 00), true));
+        saveDates(new Date("Viernes", "52765677C", "Sebastián Arrese Errasti",2, "Psicología", LocalDate.now(), LocalTime.of(10, 00, 00), LocalTime.of(10, 55, 00), true));
+        saveDates(new Date("Viernes", "12770262H", "Saulo Oraa Miranes",2, "Psicología", LocalDate.now(), LocalTime.of(11, 00, 00), LocalTime.of(11, 55, 00), true));
+        saveDates(new Date("Viernes", "61249991W", "Sabas Largacha Rano",2, "Psicología", LocalDate.now(), LocalTime.of(14, 00, 00), LocalTime.of(14, 55, 00), true));
 
     }
 

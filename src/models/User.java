@@ -1,12 +1,8 @@
 package models;
 
 
-import Controllers.DetailUserController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import org.neodatis.odb.OID;
 
-import java.io.IOException;
 
 public class User {
     private String dni;
@@ -46,7 +42,11 @@ public class User {
 
 
     static public ObjectForList UserToObjectForList(User user, OID oid){
-        return new ObjectForList(0,oid, user.name, user.dni, user.email,user.phone,"Activo","","","#27ae60","User");
+        String color = "#1abc9c";
+        if(user.getRol().equals("Admin")){
+        color= "#d35400";
+        }
+        return new ObjectForList(0,oid, user.name, user.dni, user.email,user.phone,user.getRol(),"","",color,"User");
     }
 
 

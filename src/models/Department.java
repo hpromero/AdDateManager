@@ -15,9 +15,13 @@ public class Department {
             this.id = 0;
             this.name = name;
     }
-    public Department(String name,int id) {
+    public Department(int id,String name,String assigned,String assignedName,String assigned2,String assignedName2) {
         this.id = id;
         this.name = name;
+        this.assigned = assigned;
+        this.assignedName = assignedName;
+        this.assigned2 = assigned2;
+        this.assignedName2 = assignedName2;
     }
 
     public int getId() { return id; }

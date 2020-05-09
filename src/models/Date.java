@@ -74,7 +74,6 @@ public class Date implements Comparable<Date> {
         }
         return new ObjectForList(date.id, oid, dateDay, date.customerName, date.departmentName,text4,date.startTime+"//"+date.finishTime,"","",color,"Date");
     }
-    /*"#ecf0f1"*/
 
     public void updateDate(String weekDay, String customer, int department, LocalDate date, LocalTime startTime, LocalTime finishTime, boolean weekly, LocalDate dateEnd) {
         this.weekDay = weekDay;

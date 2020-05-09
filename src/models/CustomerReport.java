@@ -18,6 +18,8 @@ public class CustomerReport {
 
 
     public static void createPdf(Customer customer) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         ArrayList<Date> customerDates = BBDD.datesbyCustomer(customer.getDni());
         Collections.sort(customerDates);
         PdfWriter writer = null;
@@ -54,15 +56,13 @@ public class CustomerReport {
             Table table = new Table(UnitValue.createPercentArray(4)).useAllAvailableWidth();
 
             for (Date date: customerDates){
-                String formattedDate = date.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
                 String dateDay;
                 String text4;
-                String color;
                 if(date.getWeekly()){
                     dateDay=date.getWeekDay();
-                    text4="Inicio:"+date.getDate()+"\n"+"Final:"+date.getDateEnd();
+                    text4="Inicio: "+date.getDate().format(formatter)+"\n"+"Final: "+date.getDateEnd().format(formatter);
                 }else{
-                    dateDay=formattedDate;
+                    dateDay=date.getDate().format(formatter);
                     text4=date.getWeekDay();
                 }
                 table.addCell(dateDay);

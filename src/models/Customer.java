@@ -5,6 +5,9 @@ import org.neodatis.odb.OID;
 
 import java.time.LocalDate;
 
+import static java.time.temporal.ChronoUnit.MINUTES;
+import static java.time.temporal.ChronoUnit.YEARS;
+
 public class Customer {
     private String dni;
     private String name;
@@ -60,7 +63,12 @@ public class Customer {
 
 
     static public ObjectForList CustomerToObjectForList(Customer customer, OID oid){
-        return new ObjectForList(0,oid, customer.name, customer.dni, customer.email,customer.phone,customer.active,"","","#27ae60","Customer");
+        long years = YEARS.between(customer.birthDate,LocalDate.now());
+        String color = "#d35400";
+        if(years<18){
+            color = "#1abc9c";
+        }
+        return new ObjectForList(0,oid, customer.name, customer.dni, customer.phone,customer.guardian,"Edad: "+years,"","",color,"Customer");
     }
 
     public void updateCustomer(String dni, String name, LocalDate birthDate, String gender, String guardian, String phone, String email, String altContact, String altPhone, boolean rgpd, String school, String course, String derivedFrom, String knowUsFor) {

@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.VBox;
 import models.ObjectForList;
 import org.neodatis.odb.OID;
@@ -18,7 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-//public class SectionController implements Initializable {
 public class SectionController {
 
     @FXML private VBox vbContent = null;
@@ -32,8 +30,6 @@ public class SectionController {
     private ArrayList<ObjectForList> objectList;
     private ArrayList<ObjectForList> objectListFilter;
 
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) { }
 
     public void setInitialData(String title,ArrayList<ObjectForList> objectList,String model){
         this.title = title;

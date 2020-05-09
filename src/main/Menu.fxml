@@ -5,7 +5,6 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<!--        styleClass="backgroundMenu" -->
 
 <BorderPane prefHeight="542.0" prefWidth="928.0" styleClass="mainMenu" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MenuController">
    <left>
@@ -101,7 +100,7 @@
             <Label />
             <Label />
                 
-                <Button fx:id="btnNewDate" alignment="BASELINE_LEFT" graphicTextGap="22.0" minHeight="42.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="200.0" text="Nueva cita">
+                <Button fx:id="btnNewDate" alignment="BASELINE_LEFT" graphicTextGap="22.0" minHeight="42.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="200.0" text="Cargar datos">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>

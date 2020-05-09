@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,10 +19,6 @@ import models.Date;
 import models.Department;
 import models.QuickWeek;
 import models.Settings;
-
-
-//import javax.swing.*;
-//import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -145,7 +140,6 @@ public class DailyViewController {
             lastFinish = date.getFinishTime();
         }
 
- //       int hour = lastFinish.getHour();
         int hour = Settings.getEndday().getHour();
         if(hour-labelHour>0){
             for (int i=1;i<=hour-labelHour;i++){
@@ -157,47 +151,22 @@ public class DailyViewController {
         createBlankDateSpace((int)minutesBlank,lastFinish,Settings.getEndday());
     }
 
-    private void setHours(){
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
-        vbHours.getChildren().clear();
-        int horaIncio = Settings.getStartday().getHour();
-        int horas = (int) HOURS.between(Settings.getStartday(),Settings.getEndday());
-        System.out.println(horas+"numero de horas del dia");
-        for (int i=0; i<=horas; i++){
-            createHourSpace(horaIncio+i,60);
-        }
-    }
+
     private void createHourSpace(int hour,int height){
         Label label = new Label(String.valueOf(hour)+":00");
         label.setStyle("-fx-text-fill : #95a5a6;");
         Pane space = new Pane(label);
-   //     AnchorPane.setTopAnchor(label, 0.0);
-   //     AnchorPane.setLeftAnchor(label, 5.0);
         space.setPrefSize(40,height);
         space.setStyle("-fx-border-width:1 0 0 0 ;\n"+
                 "    -fx-border-color: #bdc3c7;");
         vbHours.getChildren().add(space);
     }
- /*   private void createHourSpace(String hour){
-        Label label = new Label(hour);
-        AnchorPane space = new AnchorPane(label);
-        AnchorPane.setTopAnchor(label, 0.0);
-        AnchorPane.setLeftAnchor(label, 5.0);
-        space.setPrefSize(25,60);
-        space.setStyle("-fx-border-width: 0 1 1 ;\n" +
-                "    -fx-border-color: #ABB2B9;");
-        vbHours.getChildren().add(space);
-    }
 
-
-  */
 
 
     private void createBlankHourSpace(int minutes){
         AnchorPane space = new AnchorPane();
         space.setMinSize(25,minutes);
-//        space.setStyle("-fx-border-width: 0 1 1 ;\n" +
-//                "    -fx-border-color: #ABB2B9;");
         vbHours.getChildren().add(space);
     }
 
@@ -287,7 +256,6 @@ public class DailyViewController {
             controller.addDateFromDaily(dayOfWeekName,localDate,start,end,department);
             controller.setDailyController(this);
             Scene scene = new Scene(root);
-   //         Scene scene = new Scene(root);
             secondStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
             secondStage.show();

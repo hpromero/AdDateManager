@@ -7,13 +7,13 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 
 <?import javafx.scene.layout.Region?>
 
-<VBox alignment="CENTER_LEFT"  spacing="20.0"  xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DetailUserController">
+<?import javafx.scene.control.ChoiceBox?>
+<VBox alignment="CENTER_LEFT" spacing="20.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DetailUserController">
    <children>
       <HBox alignment="TOP_LEFT" minHeight="40.0"  prefHeight="40.0" prefWidth="1000.0" spacing="20.0">
             <children>
@@ -59,7 +59,7 @@
                   <HBox>
                      <children>
                         <Label prefHeight="26.0" prefWidth="140.0" text="Rol:" />
-                        <TextField fx:id="tfRol" prefWidth="300.0" />
+                        <ChoiceBox fx:id="tfRol" prefWidth="300.0" />
                      </children>
                   </HBox>
                   <HBox>

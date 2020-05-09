@@ -22,7 +22,7 @@
     </padding>
     <HBox  alignment="CENTER_LEFT"   prefHeight="80.0" prefWidth="1000.0" minHeight="80.0" spacing="10.0"  styleClass="sectionHead" >
         <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="250.0" spacing="15.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="400.0" spacing="15.0">
                 <children>
                     <Label fx:id="lbTitle"  styleClass="titleDark" ></Label>
                     <Label fx:id="lbSubTitle" styleClass="subtitleGrey"  />
