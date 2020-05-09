@@ -8,12 +8,9 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.UnitValue;
-import sun.misc.IOUtils;
 
-import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class CustomerReport {
@@ -26,8 +23,7 @@ public class CustomerReport {
         PdfWriter writer = null;
 
         try {
-            writer = new PdfWriter("Informe"+customer.getDni()+".pdf");
-  //          writer = new PdfWriter("Informe.pdf");
+          writer = new PdfWriter("Informe"+customer.getDni()+".pdf");
 
         PdfDocument pdfDoc = new PdfDocument(writer);
         Document doc = new Document(pdfDoc);
@@ -53,7 +49,7 @@ public class CustomerReport {
             doc.add(new Paragraph("Curso:"+customer.getCourse()).setFont(font));
             doc.add(new Paragraph("Derivado de:\n"+customer.getDerivedFrom()).setFont(font));
             doc.add(new Paragraph("Nos conoce por:\n"+customer.getKnowUsFor()).setFont(font));
-            doc.add(new Paragraph(""));
+            doc.add(new Paragraph("\n"));
 
             Table table = new Table(UnitValue.createPercentArray(4)).useAllAvailableWidth();
 
@@ -80,6 +76,9 @@ public class CustomerReport {
             doc.add(table);
 
         doc.close();
+
+
+
         } catch (Exception e) {
         e.printStackTrace();
         }

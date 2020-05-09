@@ -38,7 +38,7 @@ public class DepartmentReport {
 
             doc.add(new Paragraph("Asigando a: "+department.getAssignedName()).setFont(font));
             doc.add(new Paragraph("Suplente: "+department.getAssignedName2()).setFont(font));
-            doc.add(new Paragraph(""));
+            doc.add(new Paragraph("\n"));
 
             Table table = new Table(UnitValue.createPercentArray(4)).useAllAvailableWidth();
 
