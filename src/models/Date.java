@@ -59,20 +59,20 @@ public class Date implements Comparable<Date> {
 
 
     static public ObjectForList DateToObjectForList(Date date, OID oid){
-        String formattedDate = date.date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String dateDay;
         String text4;
         String color;
         if(date.getWeekly()){
             dateDay=date.weekDay;
-            text4=date.date+"//"+date.dateEnd;
+            text4="Inicio: "+date.getDate().format(formatter)+"\n"+"Final: "+date.getDateEnd().format(formatter);
             color="#fdcb6e";
         }else{
-            dateDay=formattedDate;
+            dateDay=date.getDate().format(formatter);
             text4=date.weekDay;
             color="#0984e3";
         }
-        return new ObjectForList(date.id, oid, dateDay, date.customerName, date.departmentName,text4,date.startTime+"//"+date.finishTime,"","",color,"Date");
+        return new ObjectForList(date.id, oid, dateDay, date.customerName, date.departmentName,text4,date.startTime+" // "+date.finishTime,"","",color,"Date");
     }
 
     public void updateDate(String weekDay, String customer, int department, LocalDate date, LocalTime startTime, LocalTime finishTime, boolean weekly, LocalDate dateEnd) {
