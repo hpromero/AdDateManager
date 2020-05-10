@@ -179,7 +179,7 @@ public class DailyViewController {
         AnchorPane space = new AnchorPane(vb);
         AnchorPane.setTopAnchor(label, 0.0);
         AnchorPane.setLeftAnchor(label, 5.0);
-        space.setPrefSize(250,height);
+        space.setPrefSize(180,height);
         space.getStyleClass().add("dailyPane");
         space.setOnMouseClicked(event -> openDateDetail(id));
         if (wkly){
@@ -240,7 +240,7 @@ public class DailyViewController {
                 height=40;
             }
         }
-        space.setPrefSize(250,height);
+        space.setPrefSize(180,height);
         vbDates.getChildren().add(space);
     }
 

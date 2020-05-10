@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<BorderPane prefHeight="542.0" prefWidth="928.0" styleClass="mainMenu" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MenuController">
+<BorderPane prefHeight="720.0" prefWidth="1280.0" styleClass="mainMenu" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MenuController">
    <left>
         <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="180.0" BorderPane.alignment="CENTER">
             <children>
@@ -119,10 +119,10 @@
         </VBox>
    </left>
    <center>
-       <ScrollPane fx:id="mainPane" fitToHeight="true" fitToWidth="true"> <!--styleClass="backgroundLight"-->
+       <ScrollPane fx:id="mainPane" fitToHeight="true" fitToWidth="true">
            <content>
 
-               <VBox spacing="5.0" styleClass="generalBackground"> <!--styleClass="backgroundLight" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"-->
+               <VBox spacing="5.0" styleClass="generalBackground">
                    <padding>
                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                    </padding>
@@ -132,7 +132,7 @@
                            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                            <VBox fx:id="vbContent" spacing="5.0">
                                <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="loginPane"> <!--xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"-->
+                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="loginPane">
                                    <children>
                                        <VBox spacing="10.0">
                                            <children>

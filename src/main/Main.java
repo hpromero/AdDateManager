@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         primaryStage.setTitle("AdDateManager");
-        Scene scene = new Scene(root,1000,600);
+           Scene scene = new Scene(root,1280,720);
         primaryStage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
         primaryStage.show();

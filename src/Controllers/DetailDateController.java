@@ -105,7 +105,7 @@ public class DetailDateController {
             btnDate.setText("Editar");
             btnDate2.setText("Eliminar");
             this.date = BBDD.getDateById(id);
-            lTitle.setText("Visualizar Cita "+date.getId());
+            lTitle.setText("Visualizar Cita");
             cbWeekDay.setDisable(true);
             chbCustomer.setDisable(true);
             chbdepartment.setDisable(true);
@@ -127,7 +127,7 @@ public class DetailDateController {
         editmode = true;
         btnDate.setText("Guardar");
         btnDate2.setText("Cancelar");
-        lTitle.setText("Editar Cita "+date.getId());
+        lTitle.setText("Editar Cita");
         if (MenuController.isAdmin()){
 
 
